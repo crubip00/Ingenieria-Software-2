@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,8 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JPasswordField;
 
 public class Acceder {
@@ -40,8 +43,10 @@ public class Acceder {
 		
 		frmLogin = new JFrame();
 		frmLogin.setTitle("Login");
-		frmLogin.setBounds(100, 100, 377, 158);
+		frmLogin.setBounds(100, 100, 457, 163);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmLogin.setLocationRelativeTo(null);
+		
 		
 		JPanel panel_1 = new JPanel();
 		frmLogin.getContentPane().add(panel_1, BorderLayout.SOUTH);
@@ -139,6 +144,4 @@ public class Acceder {
 		passwordField.setBounds(177, 36, 118, 20);
 		panel_2.add(passwordField);
 	}
-	
-
 }

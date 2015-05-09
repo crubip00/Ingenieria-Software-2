@@ -1,20 +1,18 @@
 package Login;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JList;
-import java.awt.BorderLayout;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
-import com.toedter.calendar.JDayChooser;
+
 import com.toedter.calendar.JCalendar;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
@@ -23,13 +21,17 @@ import java.sql.Statement;
 import java.util.Calendar;
 
 import javax.swing.JTextField;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 import java.awt.Font;
+
 import javax.swing.border.BevelBorder;
-import java.awt.Toolkit;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
+import oracle.net.aso.o;
 
 
 public class VentanaSistema {
@@ -55,19 +57,23 @@ public class VentanaSistema {
 	private int tipo;
 	private JTextField textField_2;
 	
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public VentanaSistema(final Statement consulta2) {
 		
 		frmCentroDeportivoS = new JFrame();
 		frmCentroDeportivoS.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCentroDeportivoS.setTitle("Centro deportivo 'En forma'");
-		frmCentroDeportivoS.setBounds(100, 100, 618, 409);
+		frmCentroDeportivoS.setBounds(100, 100, 618, 425);
 		frmCentroDeportivoS.getContentPane().setLayout(null);
+		frmCentroDeportivoS.setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panel.setBounds(10, 11, 244, 345);
 		frmCentroDeportivoS.getContentPane().add(panel);
 		panel.setLayout(null);
+		
 		
 		final JComboBox comboBox_2 = new JComboBox(horasBatuka);
 		comboBox_2.setBounds(138, 67, 96, 20);
@@ -78,6 +84,7 @@ public class VentanaSistema {
 		
 		final JCalendar calendar = new JCalendar();
 		calendar.addPropertyChangeListener(new PropertyChangeListener() {
+			@SuppressWarnings("unchecked")
 			public void propertyChange(PropertyChangeEvent evt) {
 				if(comboBox.getSelectedIndex() == 1 && calendar.getCalendar().get(Calendar.DAY_OF_WEEK) != 7 && calendar.getCalendar().get(Calendar.DAY_OF_WEEK) != 1){
 					comboBox_2.removeAllItems();
@@ -134,6 +141,7 @@ public class VentanaSistema {
 		
 		
 		comboBox_1.addActionListener(new ActionListener() {
+			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent arg0) {
 				if(comboBox.getSelectedIndex() == 1 && calendar.getCalendar().get(Calendar.DAY_OF_WEEK) != 7 && calendar.getCalendar().get(Calendar.DAY_OF_WEEK) != 1){
 					comboBox_2.removeAllItems();
@@ -196,6 +204,7 @@ public class VentanaSistema {
 		
 		
 		comboBox.addActionListener(new ActionListener() {
+			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent arg0) {
 				if(comboBox.getSelectedIndex() == 0){
 					comboBox_1.removeAllItems();
@@ -247,7 +256,7 @@ public class VentanaSistema {
 				dia = calendar.getCalendar().get(Calendar.DAY_OF_MONTH);
 				mes = calendar.getCalendar().get(Calendar.MONTH) + 1;
 				ano = calendar.getCalendar().get(Calendar.YEAR);
-				if(comboBox_2.getSelectedIndex() == -1) JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
+				if(comboBox_2.getSelectedIndex() == -1) JOptionPane.showMessageDialog(btnReservar, "Este dï¿½a no hay reservas.", "Advertencia", 2);
 				else if(comboBox.getSelectedIndex() == 0){
 					try {
 						resultado = consulta2.executeQuery("SELECT fecha, hora, id_usuario FROM actividades"+
@@ -261,7 +270,7 @@ public class VentanaSistema {
 								" WHERE nombre = '"+String.valueOf(comboBox_1.getSelectedItem())+"' AND fecha = '"+dia+"/"+mes+"/"+ano+
 								"' AND id_usuario = '"+id_usuario+"'");
 						if(resultado.next() == true){
-							JOptionPane.showMessageDialog(btnReservar, "Ya hay otra reserva ese día.", "Advertencia", 2);
+							JOptionPane.showMessageDialog(btnReservar, "Ya hay otra reserva ese dï¿½a.", "Advertencia", 2);
 							return;
 						}
 						resultado = consulta2.executeQuery("SELECT fecha, hora, id_usuario FROM pistas"+
@@ -279,7 +288,7 @@ public class VentanaSistema {
 							cont = resultado.getInt(1);
 						}
 						if(!(cont < 15)){
-							JOptionPane.showMessageDialog(btnReservar, "La reserva está completa.", "Advertencia", 2);
+							JOptionPane.showMessageDialog(btnReservar, "La reserva estï¿½ completa.", "Advertencia", 2);
 							return;
 						}
 					} catch (SQLException e2) {
@@ -313,7 +322,7 @@ public class VentanaSistema {
 								" WHERE fecha = '"+dia+"/"+mes+"/"+ano+
 								"' AND id_usuario = '"+id_usuario+"'");
 						if(resultado.next() == true){
-							JOptionPane.showMessageDialog(btnReservar, "Ya hay otra reserva ese día.", "Advertencia", 2);
+							JOptionPane.showMessageDialog(btnReservar, "Ya hay otra reserva ese dï¿½a.", "Advertencia", 2);
 							return;
 						}
 						resultado = consulta2.executeQuery("SELECT fecha, hora FROM pistas"+
@@ -438,7 +447,7 @@ public class VentanaSistema {
 			id_usuario = resultado.getString("id_usuario");
 			textField_1.setText(id_usuario);
 			tipo = resultado.getInt("tipo_cuenta");
-			if(tipo == 0) textField_2.setText("básico");
+			if(tipo == 0) textField_2.setText("bï¿½sico");
 			else if(tipo == 1) textField_2.setText("premium");
 			else if(tipo == 2) textField_2.setText("administrador");
 			
@@ -479,13 +488,121 @@ public class VentanaSistema {
 			final JButton button = new JButton("?");
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					String str = "Para crear una reserva: elegir la actividad, el día y la hora y pulsar reservar.\n"+
+					String str = "Para crear una reserva: elegir la actividad, el dï¿½a y la hora y pulsar reservar.\n"+
 							"Para eliminar la reserva: seleccionarla y pulsar cancelar reserva.";
 					JOptionPane.showMessageDialog(button, str , "Ayuda", 3);
 				}
 			});
 			button.setBounds(270, 66, 52, 23);
 			panel_1.add(button);
+			
+			JMenuBar menuBar = new JMenuBar();
+			frmCentroDeportivoS.setJMenuBar(menuBar);
+			
+			// Botones y Action listener para ir a la tienda:
+			
+			JMenu mnTienda = new JMenu("Tienda 'En forma'");
+			menuBar.add(mnTienda);
+			
+			JMenuItem menuItemTienda = new JMenuItem("Ver Tienda");
+			mnTienda.add(menuItemTienda);
+			menuItemTienda.addActionListener(new ActionListener() {
+				private VentanaTienda oVentanaTienda;
+
+				public void actionPerformed(ActionEvent e){
+					 this.oVentanaTienda = new VentanaTienda();
+					
+					 oVentanaTienda.frameTienda.setVisible(true);
+					
+					
+				}
+			});
+			
+			
+			// Botones y Action listener para ir a los entrenamientos/rutinas:
+			
+			
+			
+			JMenu mnEntrenamientos = new JMenu("Entrenamientos Recomendados");
+			menuBar.add(mnEntrenamientos);
+			
+			JMenuItem menuItemEntrenamientos = new JMenuItem("Lista Entrenamientos Disponibles");
+			mnEntrenamientos.add(menuItemEntrenamientos);
+			
+			menuItemEntrenamientos.addActionListener(new ActionListener() {
+				
+				private VentanaEntrenamientos oVentanaEntrenamientos;
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					this.oVentanaEntrenamientos = new VentanaEntrenamientos();
+					
+					oVentanaEntrenamientos.frameEntrenamientos.setVisible(true);
+					
+					
+				}
+			});
+			
+			
+			// Botones y Action listener de la consulta de fisioterapia:
+			
+			JMenu mnConsultaFisioterapeuta = new JMenu("Consulta fisioterapeuta");
+			menuBar.add(mnConsultaFisioterapeuta);
+			
+			JMenuItem menuItemConsulta = new JMenuItem("Reservar Consulta");
+			mnConsultaFisioterapeuta.add(menuItemConsulta);
+			menuItemConsulta.addActionListener(new ActionListener() {
+				
+				private VentanaFisio oVentanaFisio;
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					this.oVentanaFisio = new VentanaFisio();
+					
+					oVentanaFisio.frameFisio.setVisible(true);
+					
+					
+					
+				}
+			});
+			
+			
+			// Botones y Action Listener de Ayuda y About.
+			
+			JMenu mnAyuda = new JMenu("Ayuda");
+			menuBar.add(mnAyuda);
+			
+			JMenuItem menuItemAyuda = new JMenuItem("Ver Ayuda");
+			mnAyuda.add(menuItemAyuda);
+			menuItemAyuda.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					String str1= "Aplicacion ........................asdfasdfadf..asdf";
+					
+					JOptionPane.showMessageDialog(null, str1, "Ayuda de la AplicaciÃ³n", JOptionPane.INFORMATION_MESSAGE);
+					
+					
+				}
+			});
+			
+			
+			JMenuItem menuItemAbout = new JMenuItem("About ");
+			mnAyuda.add(menuItemAbout);
+			menuItemAbout.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					String str2= "AplicaciÃ³n desarrollada para la asignatura Ingenieria del software II\n\n"
+							+ "Alumnos: Raquel \n Ismael \n Cesar \n\n"
+							+ "VersiÃ³n: 2.0 ";
+					
+					JOptionPane.showMessageDialog(null, str2, "About", JOptionPane.INFORMATION_MESSAGE);
+					
+					
+				}
+			});
 			
 			
 		} catch (SQLException e1) {

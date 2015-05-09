@@ -46,6 +46,7 @@ public class VentanaAdministrador {
 		frmAdministracion.setBounds(100, 100, 522, 389);
 		frmAdministracion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAdministracion.getContentPane().setLayout(null);
+		frmAdministracion.setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -408,7 +409,7 @@ public class VentanaAdministrador {
 				public void actionPerformed(ActionEvent arg0) {
 					String str = "Para crear nuevo usuario: introducir nombre y clave y pulsar crear usuario.\n"+
 							"Para mostrar usuarios, actividades o pistas seleccionar el desplegable.\n"+
-							"Para eliminar el registro de la base de datos pulsar eliminar selección.\n"+
+							"Para eliminar el registro de la base de datos pulsar eliminar selecciï¿½n.\n"+
 							"Para cambiar los permisos de un usuario, seleccionar el usuario, seleccionar el tipo de permiso\n"+
 							"y pulsar dar permiso.\n"+
 							"Para crear una copia de la base de datos pulsar crear una copia de la BD.";
