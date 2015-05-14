@@ -2,6 +2,7 @@ package Login;
 
 import java.awt.EventQueue;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -16,22 +17,25 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 public class VentanaEntrenamientos {
 
 	JFrame frameEntrenamientos;
 	private ResultSet resultado;
+	private JTextField textUsuario;
 
 	public VentanaEntrenamientos(final Statement consulta3) {
 
 		frameEntrenamientos = new JFrame();
 		frameEntrenamientos.setTitle("Entrenamientos ' En Forma'");
-		frameEntrenamientos.setBounds(100, 100, 814, 560);
+		frameEntrenamientos.setBounds(100, 100, 814, 570);
 		frameEntrenamientos.getContentPane().setLayout(null);
 		frameEntrenamientos.setLocationRelativeTo(null);
 
@@ -40,17 +44,17 @@ public class VentanaEntrenamientos {
 		JLabel labelWeider = new JLabel("");
 		labelWeider.setIcon(new ImageIcon(
 				"C:\\Users\\CésarJesús\\workspace\\GYM\\images\\Weider.png"));
-		labelWeider.setBounds(57, 64, 133, 89);
+		labelWeider.setBounds(55, 98, 133, 89);
 		frameEntrenamientos.getContentPane().add(labelWeider);
 
 		JLabel lblNewLabel = new JLabel("Weider");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		lblNewLabel.setBounds(90, 30, 89, 23);
+		lblNewLabel.setBounds(90, 64, 89, 23);
 		frameEntrenamientos.getContentPane().add(lblNewLabel);
 
 		JButton botonPreviaWeider = new JButton("Vista Previa");
 		botonPreviaWeider.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		botonPreviaWeider.setBounds(33, 164, 95, 23);
+		botonPreviaWeider.setBounds(33, 210, 95, 23);
 		frameEntrenamientos.getContentPane().add(botonPreviaWeider);
 		botonPreviaWeider.addActionListener(new ActionListener() {
 
@@ -88,33 +92,55 @@ public class VentanaEntrenamientos {
 
 		JButton botonDescargarWeider = new JButton("Descargar");
 		botonDescargarWeider.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		botonDescargarWeider.setBounds(137, 164, 95, 23);
+		botonDescargarWeider.setBounds(144, 210, 95, 23);
 		frameEntrenamientos.getContentPane().add(botonDescargarWeider);
 		botonDescargarWeider.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+				Connection conn = null;
+				Conexion gc = null;
+
+				try {
+
+					gc = new Conexion();
+					conn = gc.getConexion();
+
+					 String path = "C:\\Users\\CésarJesús\\Downloads";
+
+					RecuperadorBLOB.RecuperarBLOB(conn, "weider", path);
+
+				} catch (SQLException sqle) {
+					System.out.println("Error de acceso a BD:"
+							+ sqle.getMessage());
+					sqle.printStackTrace();
+				} catch (IOException ioe) {
+					System.out.println("Error de acceso a disco:"
+							+ ioe.getMessage());
+					ioe.printStackTrace();
+				}
+
 			}
-				
+
 		});
 
 		// Icono, Botones y Action Listener de Full Body:
 
 		JLabel lblFullBody = new JLabel("Full body");
 		lblFullBody.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		lblFullBody.setBounds(333, 32, 70, 18);
+		lblFullBody.setBounds(337, 66, 70, 18);
 		frameEntrenamientos.getContentPane().add(lblFullBody);
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(
 				"C:\\Users\\CésarJesús\\workspace\\GYM\\images\\fullBody.png"));
-		lblNewLabel_1.setBounds(318, 64, 133, 89);
+		lblNewLabel_1.setBounds(318, 98, 133, 89);
 		frameEntrenamientos.getContentPane().add(lblNewLabel_1);
 
 		JButton botonPreviaFullBody = new JButton("Vista Previa");
 		botonPreviaFullBody.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		botonPreviaFullBody.setBounds(293, 164, 89, 23);
+		botonPreviaFullBody.setBounds(293, 210, 89, 23);
 		frameEntrenamientos.getContentPane().add(botonPreviaFullBody);
 		botonPreviaFullBody.addActionListener(new ActionListener() {
 
@@ -149,25 +175,61 @@ public class VentanaEntrenamientos {
 
 		JButton botonDescargarFullBody = new JButton("Descargar");
 		botonDescargarFullBody.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		botonDescargarFullBody.setBounds(392, 164, 89, 23);
+		botonDescargarFullBody.setBounds(403, 210, 89, 23);
 		frameEntrenamientos.getContentPane().add(botonDescargarFullBody);
+		botonDescargarFullBody.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Connection conn = null;
+				Conexion gc = null;
+
+				try {
+
+					gc = new Conexion();
+					conn = gc.getConexion();
+
+					 String path = "C:\\Users\\CésarJesús\\Downloads";
+					 
+					RecuperadorBLOB.RecuperarBLOB(conn, "fullbody", path);
+
+				} catch (SQLException sqle) {
+					System.out.println("Error de acceso a BD:"
+							+ sqle.getMessage());
+					sqle.printStackTrace();
+				} catch (IOException ioe) {
+					System.out.println("Error de acceso a disco:"
+							+ ioe.getMessage());
+					ioe.printStackTrace();
+				}
+				
+				
+				
+			}
+		});
+		
+		
+		
+		
+		
 
 		// Icono, Botones y Action Listener de CrosFit:
 
 		JLabel lblCrossfit = new JLabel("CrossFit");
 		lblCrossfit.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		lblCrossfit.setBounds(632, 31, 82, 18);
+		lblCrossfit.setBounds(632, 66, 82, 18);
 		frameEntrenamientos.getContentPane().add(lblCrossfit);
 
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(
 				"C:\\Users\\CésarJesús\\workspace\\GYM\\images\\crossfit.png"));
-		label.setBounds(604, 64, 116, 89);
+		label.setBounds(605, 98, 116, 89);
 		frameEntrenamientos.getContentPane().add(label);
 
 		JButton botonPreviaCrossFit = new JButton("Vista Previa");
 		botonPreviaCrossFit.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		botonPreviaCrossFit.setBounds(558, 164, 89, 23);
+		botonPreviaCrossFit.setBounds(558, 210, 89, 23);
 		frameEntrenamientos.getContentPane().add(botonPreviaCrossFit);
 		botonPreviaCrossFit.addActionListener(new ActionListener() {
 
@@ -208,30 +270,89 @@ public class VentanaEntrenamientos {
 
 		JButton botonDescargarCrossFit = new JButton("Descargar");
 		botonDescargarCrossFit.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		botonDescargarCrossFit.setBounds(665, 164, 89, 23);
+		botonDescargarCrossFit.setBounds(665, 210, 89, 23);
 		frameEntrenamientos.getContentPane().add(botonDescargarCrossFit);
+		botonDescargarCrossFit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Connection conn = null;
+				Conexion gc = null;
+
+				try {
+
+					gc = new Conexion();
+					conn = gc.getConexion();
+
+					 String path = "C:\\Users\\CésarJesús\\Downloads";
+					RecuperadorBLOB.RecuperarBLOB(conn, "crossfit", path);
+
+				} catch (SQLException sqle) {
+					System.out.println("Error de acceso a BD:"
+							+ sqle.getMessage());
+					sqle.printStackTrace();
+				} catch (IOException ioe) {
+					System.out.println("Error de acceso a disco:"
+							+ ioe.getMessage());
+					ioe.printStackTrace();
+				}
+				
+				
+				
+			}
+		});
+		
 
 		// Icono, Botones y Action Listener de GAP:
 
 		JLabel lblVolumen = new JLabel("GAP");
 		lblVolumen.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		lblVolumen.setBounds(90, 240, 70, 18);
+		lblVolumen.setBounds(109, 273, 70, 18);
 		frameEntrenamientos.getContentPane().add(lblVolumen);
 
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(
 				"C:\\Users\\CésarJesús\\workspace\\GYM\\images\\rutina1.png"));
-		label_1.setBounds(69, 272, 133, 121);
+		label_1.setBounds(70, 319, 133, 121);
 		frameEntrenamientos.getContentPane().add(label_1);
 
 		JButton botonDescargarGAP = new JButton("Descargar");
 		botonDescargarGAP.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		botonDescargarGAP.setBounds(143, 417, 89, 23);
+		botonDescargarGAP.setBounds(150, 469, 89, 23);
 		frameEntrenamientos.getContentPane().add(botonDescargarGAP);
+		botonDescargarGAP.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Connection conn = null;
+				Conexion gc = null;
+
+				try {
+
+					gc = new Conexion();
+					conn = gc.getConexion();
+
+					 String path = "C:\\Users\\CésarJesús\\Downloads";
+
+					RecuperadorBLOB.RecuperarBLOB(conn, "gap", path);
+
+				} catch (SQLException sqle) {
+					System.out.println("Error de acceso a BD:"
+							+ sqle.getMessage());
+					sqle.printStackTrace();
+				} catch (IOException ioe) {
+					System.out.println("Error de acceso a disco:"
+							+ ioe.getMessage());
+					ioe.printStackTrace();
+				}
+				
+			}
+		});
 
 		JButton botonPreviaGAP = new JButton("Vista Previa");
 		botonPreviaGAP.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		botonPreviaGAP.setBounds(33, 417, 89, 23);
+		botonPreviaGAP.setBounds(33, 469, 89, 23);
 		frameEntrenamientos.getContentPane().add(botonPreviaGAP);
 		botonPreviaGAP.addActionListener(new ActionListener() {
 
@@ -264,18 +385,18 @@ public class VentanaEntrenamientos {
 
 		JLabel lblBodyPump = new JLabel("Body Pump");
 		lblBodyPump.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		lblBodyPump.setBounds(357, 240, 82, 17);
+		lblBodyPump.setBounds(357, 274, 82, 17);
 		frameEntrenamientos.getContentPane().add(lblBodyPump);
 
 		JLabel label_2 = new JLabel("");
 		label_2.setIcon(new ImageIcon(
 				"C:\\Users\\CésarJesús\\workspace\\GYM\\images\\bodypump.png"));
-		label_2.setBounds(318, 272, 133, 121);
+		label_2.setBounds(318, 300, 133, 121);
 		frameEntrenamientos.getContentPane().add(label_2);
 
 		JButton botonPreviaBodyPump = new JButton("Vista Previa");
 		botonPreviaBodyPump.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		botonPreviaBodyPump.setBounds(293, 417, 89, 23);
+		botonPreviaBodyPump.setBounds(293, 469, 89, 23);
 		frameEntrenamientos.getContentPane().add(botonPreviaBodyPump);
 		botonPreviaBodyPump.addActionListener(new ActionListener() {
 
@@ -300,25 +421,55 @@ public class VentanaEntrenamientos {
 
 		JButton botonDescargarBodyPump = new JButton("Descargar");
 		botonDescargarBodyPump.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		botonDescargarBodyPump.setBounds(392, 417, 89, 23);
+		botonDescargarBodyPump.setBounds(403, 469, 89, 23);
 		frameEntrenamientos.getContentPane().add(botonDescargarBodyPump);
+		botonDescargarBodyPump.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Connection conn = null;
+				Conexion gc = null;
+
+				try {
+
+					gc = new Conexion();
+					conn = gc.getConexion();
+
+					 String path = "C:\\Users\\CésarJesús\\Downloads";
+					 
+					RecuperadorBLOB.RecuperarBLOB(conn, "bodypump", path);
+
+				} catch (SQLException sqle) {
+					System.out.println("Error de acceso a BD:"
+							+ sqle.getMessage());
+					sqle.printStackTrace();
+				} catch (IOException ioe) {
+					System.out.println("Error de acceso a disco:"
+							+ ioe.getMessage());
+					ioe.printStackTrace();
+				}
+				
+			}
+		});
+		
+		
 
 		// Icono, Botones y Action Listener de VOLUMEN:
 
 		JLabel lblVolumen_1 = new JLabel("Volumen");
 		lblVolumen_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		lblVolumen_1.setBounds(632, 240, 70, 17);
+		lblVolumen_1.setBounds(632, 274, 70, 17);
 		frameEntrenamientos.getContentPane().add(lblVolumen_1);
 
 		JLabel label_3 = new JLabel("");
 		label_3.setIcon(new ImageIcon(
 				"C:\\Users\\CésarJesús\\workspace\\GYM\\images\\volumen.png"));
-		label_3.setBounds(604, 281, 133, 121);
+		label_3.setBounds(605, 300, 133, 121);
 		frameEntrenamientos.getContentPane().add(label_3);
 
 		JButton botonVistaPreviaVolumen = new JButton("Vista Previa");
 		botonVistaPreviaVolumen.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		botonVistaPreviaVolumen.setBounds(558, 417, 89, 23);
+		botonVistaPreviaVolumen.setBounds(558, 469, 89, 23);
 		frameEntrenamientos.getContentPane().add(botonVistaPreviaVolumen);
 		botonVistaPreviaVolumen.addActionListener(new ActionListener() {
 
@@ -362,8 +513,47 @@ public class VentanaEntrenamientos {
 
 		JButton botonDescargarVolumen = new JButton("Descargar");
 		botonDescargarVolumen.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		botonDescargarVolumen.setBounds(665, 417, 89, 23);
+		botonDescargarVolumen.setBounds(665, 469, 89, 23);
 		frameEntrenamientos.getContentPane().add(botonDescargarVolumen);
-	}
+		botonDescargarVolumen.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Connection conn = null;
+				Conexion gc = null;
 
+				try {
+
+					gc = new Conexion();
+					conn = gc.getConexion();
+
+					 String path = "C:\\Users\\CésarJesús\\Downloads";					
+					RecuperadorBLOB.RecuperarBLOB(conn, "volumen", path);
+
+				} catch (SQLException sqle) {
+					System.out.println("Error de acceso a BD:"
+							+ sqle.getMessage());
+					sqle.printStackTrace();
+				} catch (IOException ioe) {
+					System.out.println("Error de acceso a disco:"
+							+ ioe.getMessage());
+					ioe.printStackTrace();
+				}
+				
+				
+			}
+		});
+		
+
+		textUsuario = new JTextField();
+		textUsuario.setBounds(415, 24, 86, 20);
+		frameEntrenamientos.getContentPane().add(textUsuario);
+		textUsuario.setColumns(10);
+		textUsuario.setText(VentanaSistema.nombreUsuario);
+
+		JLabel lblUsuario = new JLabel("Usuario:");
+		lblUsuario.setBounds(293, 24, 70, 17);
+		frameEntrenamientos.getContentPane().add(lblUsuario);
+	}
 }
