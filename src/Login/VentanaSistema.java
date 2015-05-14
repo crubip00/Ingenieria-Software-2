@@ -54,6 +54,7 @@ public class VentanaSistema {
 	private int mes;
 	private int ano;
 
+	public static String nombreUsuario;
 	private int tipo;
 	private JTextField textField_2;
 	
@@ -444,6 +445,7 @@ public class VentanaSistema {
 			resultado = consulta2.executeQuery("SELECT nombre, id_usuario, tipo_cuenta FROM usuarios WHERE nombre = '" + Acceder.getNombre() + "' AND clave = '" + Acceder.getClave() + "'");
 			resultado.next();
 			textField.setText(resultado.getString("nombre"));
+			nombreUsuario = resultado.getString("nombre");
 			id_usuario = resultado.getString("id_usuario");
 			textField_1.setText(id_usuario);
 			tipo = resultado.getInt("tipo_cuenta");
@@ -535,7 +537,7 @@ public class VentanaSistema {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					
-					this.oVentanaEntrenamientos = new VentanaEntrenamientos();
+					this.oVentanaEntrenamientos = new VentanaEntrenamientos(consulta2);
 					
 					oVentanaEntrenamientos.frameEntrenamientos.setVisible(true);
 					
