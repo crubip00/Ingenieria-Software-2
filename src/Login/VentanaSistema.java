@@ -560,7 +560,7 @@ public class VentanaSistema {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					
-					this.oVentanaFisio = new VentanaFisio();
+					this.oVentanaFisio = new VentanaFisio(consulta2);
 					
 					oVentanaFisio.frameFisio.setVisible(true);
 					

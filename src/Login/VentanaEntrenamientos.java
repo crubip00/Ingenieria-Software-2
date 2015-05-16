@@ -120,6 +120,8 @@ public class VentanaEntrenamientos {
 							+ ioe.getMessage());
 					ioe.printStackTrace();
 				}
+				
+				JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente,\n mire en su carpeta de descargas!");
 
 			}
 
@@ -204,7 +206,7 @@ public class VentanaEntrenamientos {
 					ioe.printStackTrace();
 				}
 				
-				
+				JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente,\n mire en su carpeta de descargas!");
 				
 			}
 		});
@@ -298,7 +300,7 @@ public class VentanaEntrenamientos {
 					ioe.printStackTrace();
 				}
 				
-				
+				JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente,\n mire en su carpeta de descargas!");
 				
 			}
 		});
@@ -346,6 +348,8 @@ public class VentanaEntrenamientos {
 							+ ioe.getMessage());
 					ioe.printStackTrace();
 				}
+				
+				JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente,\n mire en su carpeta de descargas!");
 				
 			}
 		});
@@ -449,6 +453,8 @@ public class VentanaEntrenamientos {
 					ioe.printStackTrace();
 				}
 				
+				JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente,\n mire en su carpeta de descargas!");
+				
 			}
 		});
 		
@@ -541,6 +547,7 @@ public class VentanaEntrenamientos {
 					ioe.printStackTrace();
 				}
 				
+				JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente,\n mire en su carpeta de descargas!");
 				
 			}
 		});
