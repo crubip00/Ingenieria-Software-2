@@ -11,6 +11,7 @@ import com.toedter.calendar.JCalendar;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
@@ -43,6 +44,8 @@ public class VentanaFisio {
 	private JButton btnBorrarReserva;
 	private String descripcion;
 	private JButton botonDetalles;
+	private int cont = 1;
+	
 
 	public VentanaFisio(final Statement st) {
 
@@ -93,14 +96,13 @@ public class VentanaFisio {
 		scrollPane.setBounds(395, 89, 223, 197);
 
 		try {
-			/*rs = st.executeQuery("SELECT * FROM fisio WHERE nombre = '"
-					+ VentanaSistema.nombreUsuario + "'");*/
-			rs = st.executeQuery("SELECT * FROM fisio ");
-			
+
+			rs = st.executeQuery("SELECT * FROM fisio ORDER BY id");
+
 			while (rs.next()) {
-				modelListaFisio.addElement(rs.getString(1) + "    "
-						+ rs.getString(2) + "    " + rs.getString(4) + "    "
-						+ rs.getString(5));
+				modelListaFisio.addElement(rs.getString(1) + " \t\t   "
+						+ rs.getString(2) + "  \t\t  " + rs.getString(4)
+						+ " \t\t   " + rs.getString(5));
 
 			}
 
@@ -137,7 +139,22 @@ public class VentanaFisio {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
+				
+				/*
+				try {
+					rs = st.executeQuery("SELECT id FROM fisio WHERE id = '" + cont + "'");
+					while(rs.next() == true){
+						rs = st.executeQuery("SELECT id FROM fisio WHERE id = '" + cont + "'");
+						cont++;
+					}
+					//cont--;
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				*/
+				
 				dia = calendar.getCalendar().get(Calendar.DAY_OF_MONTH);
 				mes = calendar.getCalendar().get(Calendar.MONTH) + 1;
 				ano = calendar.getCalendar().get(Calendar.YEAR);
@@ -145,10 +162,9 @@ public class VentanaFisio {
 				descripcion = textDescripcion.getText();
 
 				try {
-					st.executeQuery("INSERT INTO fisio (nombre, descripcion, fecha, hora) "
-							+ "values ('"
-							+ VentanaSistema.nombreUsuario
-							+ "','"
+					rs = st.executeQuery("INSERT INTO fisio (id, nombre, descripcion, fecha, hora) "
+							+ "values ('"+cont
+							+"','"+ VentanaSistema.nombreUsuario+ "','"
 							+ descripcion
 							+ "','"
 							+ dia
@@ -159,11 +175,39 @@ public class VentanaFisio {
 							+ "','"
 							+ String.valueOf(comboHoras.getSelectedItem())
 							+ "')");
+					
+
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
+				JOptionPane.showMessageDialog(null,
+						"La reserva se ha realizado correctamente!");
+				
+				// Actualizar la lista de reservas dinamicamente!
 
+				try {
+
+					rs = st.executeQuery("SELECT * FROM fisio ORDER BY id");
+
+					modelListaFisio.clear();
+
+					while (rs.next()) {
+						modelListaFisio.addElement(rs.getString(1) + " \t\t   "
+								+ rs.getString(2) + "  \t\t  "
+								+ rs.getString(4) + " \t\t   "
+								+ rs.getString(5));
+
+					}
+
+				} catch (SQLException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				
+				cont = cont +1;
+				
 			}
 		});
 
@@ -175,6 +219,52 @@ public class VentanaFisio {
 		btnBorrarReserva = new JButton("Borrar Reserva");
 		btnBorrarReserva.setBounds(500, 297, 118, 23);
 		frameFisio.getContentPane().add(btnBorrarReserva);
+		btnBorrarReserva.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				String elemento = (String) listaReservas.getSelectedValue();
+
+				int index = listaReservas.getSelectedIndex();
+
+				String idEliminar = elemento.split(" ")[0];
+
+				try {
+					rs = st.executeQuery("DELETE FROM fisio WHERE id = '"
+							+ idEliminar + "'");
+
+				} catch (SQLException e2) {
+					e2.printStackTrace();
+
+				}
+
+				JOptionPane.showMessageDialog(null,
+						"La reserva se ha eliminado correctamente!");
+
+				// Actualizar la lista de reservas dinamicamente!
+
+				try {
+
+					rs = st.executeQuery("SELECT * FROM fisio ORDER BY id");
+
+					modelListaFisio.clear();
+
+					while (rs.next()) {
+						modelListaFisio.addElement(rs.getString(1) + " \t\t   "
+								+ rs.getString(2) + "  \t\t  "
+								+ rs.getString(4) + " \t\t   "
+								+ rs.getString(5));
+
+					}
+
+				} catch (SQLException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+
+			}
+		});
 
 		botonDetalles = new JButton("Mostrar Detalles");
 		botonDetalles.setBounds(379, 297, 111, 23);
