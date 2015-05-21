@@ -249,7 +249,11 @@ public class VentanaTienda {
 						.format(contadorCesta));
 
 				String strCompra = "La compra se ha realizado satisfactoriamente\n "
-						+ "por un total de:\n\n" + contadorCestastr;
+						+ "por un total de:\n\n" + contadorCestastr +" €";
+				
+				modelListaCompra.clear();
+				textTotal.setText("");
+					
 
 				JOptionPane.showMessageDialog(null, strCompra,
 						"Compra Finalizada", JOptionPane.INFORMATION_MESSAGE);

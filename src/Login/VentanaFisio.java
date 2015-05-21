@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -44,12 +45,12 @@ public class VentanaFisio {
 	private JButton btnBorrarReserva;
 	private String descripcion;
 	private JButton botonDetalles;
-	private int cont = 1;
+	//private int cont = 1;
 	
 
 	public VentanaFisio(final Statement st) {
 
-		frameFisio = new JFrame();
+		frameFisio = new JFrame("Consulta Fisioterapia");
 		frameFisio.setBounds(100, 100, 686, 462);
 		frameFisio.setLocationRelativeTo(null);
 		frameFisio.getContentPane().setLayout(null);
@@ -140,41 +141,54 @@ public class VentanaFisio {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				dia = calendar.getCalendar().get(Calendar.DAY_OF_MONTH);
+				mes = calendar.getCalendar().get(Calendar.MONTH) + 1;
+				ano = calendar.getCalendar().get(Calendar.YEAR);
 				
-				/*
+				int cont =1;
+				
 				try {
 					rs = st.executeQuery("SELECT id FROM fisio WHERE id = '" + cont + "'");
-					while(rs.next() == true){
+					do{
+						
 						rs = st.executeQuery("SELECT id FROM fisio WHERE id = '" + cont + "'");
 						cont++;
-					}
-					//cont--;
+					}while(rs.next() == true);
+					cont--;
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				*/
 				
-				dia = calendar.getCalendar().get(Calendar.DAY_OF_MONTH);
-				mes = calendar.getCalendar().get(Calendar.MONTH) + 1;
-				ano = calendar.getCalendar().get(Calendar.YEAR);
-
+				
+				try {
+					rs = st.executeQuery("SELECT fecha, hora  FROM fisio  WHERE fecha = '"+ dia+ "/"+ mes+ "/"+ ano+ "' AND hora = '"+String.valueOf(comboHoras.getSelectedItem())+"'");
+				} catch (SQLException e3) {
+					// TODO Auto-generated catch block
+					e3.printStackTrace();
+				}
+				
+				try {
+					if(rs.next() == true){
+						JOptionPane.showMessageDialog(botonReservar, "Ya hay otra reserva a esa hora.", "Advertencia", 2);
+						return;
+					}
+				} catch (HeadlessException e3) {
+					
+					
+				} catch (SQLException e3) {
+					
+				}
+				
+				
+			
 				descripcion = textDescripcion.getText();
 
 				try {
 					rs = st.executeQuery("INSERT INTO fisio (id, nombre, descripcion, fecha, hora) "
 							+ "values ('"+cont
 							+"','"+ VentanaSistema.nombreUsuario+ "','"
-							+ descripcion
-							+ "','"
-							+ dia
-							+ "/"
-							+ mes
-							+ "/"
-							+ ano
-							+ "','"
-							+ String.valueOf(comboHoras.getSelectedItem())
-							+ "')");
+							+ descripcion+ "','"+ dia+ "/"+ mes+ "/"+ ano+ "','"+ String.valueOf(comboHoras.getSelectedItem())+ "')");
 					
 
 				} catch (SQLException e1) {
@@ -206,7 +220,7 @@ public class VentanaFisio {
 					e2.printStackTrace();
 				}
 				
-				cont = cont +1;
+				//cont = cont +1;
 				
 			}
 		});
