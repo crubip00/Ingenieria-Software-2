@@ -1,14 +1,6 @@
 package Login;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileWriter;
-import java.sql.*;
-import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.TitledBorder;
+import java.awt.EventQueue;
 
 public class VentanaAdministrador {
 
@@ -21,6 +13,8 @@ public class VentanaAdministrador {
 	private String nombre;
 	private ResultSet resultado;
 	DefaultListModel modelo = new DefaultListModel();
+	DefaultListModel modelo2 = new DefaultListModel();
+	DefaultListModel modelo3 = new DefaultListModel();
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_2;
@@ -28,6 +22,8 @@ public class VentanaAdministrador {
 	private JTextField textField_6;
 	private JTextField textField_7;
 	final JList list = new JList();
+	final JList list_1 = new JList();
+	final JList list_2 = new JList();
 
 	public VentanaAdministrador(final Statement consulta3) {
 		frmAdministracion = new JFrame();
@@ -62,7 +58,7 @@ public class VentanaAdministrador {
 			final JComboBox comboBox = new JComboBox(var);
 			
 			
-			comboBox.addActionListener(new ActionListener() {
+			/*comboBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					modelo.clear();
 					if(comboBox.getSelectedIndex() == 0){
@@ -103,6 +99,8 @@ public class VentanaAdministrador {
 					list.setModel(modelo);
 				}
 			});
+			
+			*/
 			comboBox.setBounds(333, 219, 100, 20);
 			usuariosPanel.add(comboBox);
 			
@@ -129,8 +127,15 @@ public class VentanaAdministrador {
 						String[] sol = s.split("  ");
 						try {
 							modelo.clear();
-							resultado = consulta3.executeQuery("UPDATE usuarios SET tipo_cuenta = '"+comboBox_1.getSelectedIndex()+"' WHERE id_usuario = '"
+							consulta3.executeQuery("UPDATE usuarios SET tipo_cuenta = '"+comboBox_1.getSelectedIndex()+"' WHERE id_usuario = '"
 									+sol[0]+"' AND nombre = '"+sol[1]+"' AND clave = '"+sol[2]+"' AND tipo_cuenta = '"+sol[3]+"'");
+							
+							
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						try {
 							resultado = consulta3.executeQuery("SELECT * FROM usuarios");
 							while(resultado.next()){
 								modelo.addElement(resultado.getString(1)+"  "+resultado.getString(2)+"  "+resultado.getString(3)+"  "+resultado.getString(4));
@@ -153,7 +158,7 @@ public class VentanaAdministrador {
 			infoUsuarioPanel_2.setLayout(null);
 			
 			JLabel label = new JLabel("Administrador:");
-			label.setBounds(10, 8, 81, 14);
+			label.setBounds(10, 8, 86, 14);
 			infoUsuarioPanel_2.add(label);
 			
 			textField_4 = new JTextField();
@@ -318,10 +323,10 @@ public class VentanaAdministrador {
 					int cont = 1;
 					try {
 						resultado = consulta3.executeQuery("SELECT id_usuario FROM usuarios WHERE id_usuario = '" + cont + "'");
-						while(resultado.next() == true){
+						do{
 							resultado = consulta3.executeQuery("SELECT id_usuario FROM usuarios WHERE id_usuario = '" + cont + "'");
 							cont++;
-						}
+						}while(resultado.next() == true);
 						cont--;
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
@@ -462,12 +467,42 @@ public class VentanaAdministrador {
 			scrollPane_1.setBounds(5, 25, 258, 169);
 			BBDDPanel_1.add(scrollPane_1);
 			
+			scrollPane_1.setViewportView(list_1);
+			
 			JLabel label_6 = new JLabel("Base de datos:");
 			label_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 			label_6.setBounds(5, 11, 82, 14);
 			BBDDPanel_1.add(label_6);
 			
 			JButton button_5 = new JButton("Eliminar selecci\u00F3n");
+			button_5.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					String s = String.valueOf(list_1.getSelectedValue());
+					String[] sol = s.split("  ");
+					
+						try {
+							consulta3.executeQuery("DELETE FROM actividades WHERE nombre = '"
+									+sol[1]+"' AND fecha = '"+sol[2]+"' AND hora = '"+sol[3]+"' AND id_usuario = '"+sol[0]+"'");
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						modelo2.clear();
+						
+							try {
+								resultado = consulta3.executeQuery("SELECT * FROM actividades");
+								while(resultado.next()){
+									modelo2.addElement(resultado.getString(4)+"  "+resultado.getString(1)+"  "+resultado.getString(2)+"  "+resultado.getString(3));
+								}
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						
+						list_1.setModel(modelo2);
+				}
+			});
 			button_5.setBounds(5, 205, 139, 23);
 			BBDDPanel_1.add(button_5);
 			
@@ -526,12 +561,42 @@ public class VentanaAdministrador {
 			scrollPane_2.setBounds(5, 25, 258, 169);
 			panel.add(scrollPane_2);
 			
+			scrollPane_2.setViewportView(list_2);
+			
 			JLabel label_7 = new JLabel("Base de datos:");
 			label_7.setFont(new Font("Tahoma", Font.BOLD, 11));
 			label_7.setBounds(5, 11, 82, 14);
 			panel.add(label_7);
 			
 			JButton button_7 = new JButton("Eliminar selecci\u00F3n");
+			button_7.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String s = String.valueOf(list_2.getSelectedValue());
+					String[] sol = s.split("  ");
+					
+						try {
+							consulta3.executeQuery("DELETE FROM pistas WHERE nombre = '"
+									+sol[1]+"' AND fecha = '"+sol[2]+"' AND hora = '"+sol[3]+"' AND id_usuario = '"+sol[0]+"'");
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						modelo3.clear();
+						
+							try {
+								resultado = consulta3.executeQuery("SELECT * FROM pistas");
+								while(resultado.next()){
+									modelo3.addElement(resultado.getString(4)+"  "+resultado.getString(1)+"  "+resultado.getString(2)+"  "+resultado.getString(3));
+								}
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						
+						list_2.setModel(modelo3);
+				}
+			});
 			button_7.setBounds(5, 205, 139, 23);
 			panel.add(button_7);
 			
@@ -554,6 +619,48 @@ public class VentanaAdministrador {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			
+			modelo.clear();
+			
+			try {
+				resultado = consulta3.executeQuery("SELECT * FROM usuarios");
+				while(resultado.next()){
+					modelo.addElement(resultado.getString(1)+"  "+resultado.getString(2)+"  "+resultado.getString(3)+"  "+resultado.getString(4));
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			list.setModel(modelo);
+			
+			modelo2.clear();
+			
+			try {
+				resultado = consulta3.executeQuery("SELECT * FROM actividades");
+				while(resultado.next()){
+					modelo2.addElement(resultado.getString(4)+"  "+resultado.getString(1)+"  "+resultado.getString(2)+"  "+resultado.getString(3));
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			list_1.setModel(modelo2);
+			modelo3.clear();
+			
+			try {
+				resultado = consulta3.executeQuery("SELECT * FROM pistas");
+				while(resultado.next()){
+					modelo3.addElement(resultado.getString(4)+"  "+resultado.getString(1)+"  "+resultado.getString(2)+"  "+resultado.getString(3));
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			list_2.setModel(modelo3);
+			
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
