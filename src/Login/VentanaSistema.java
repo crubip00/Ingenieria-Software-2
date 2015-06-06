@@ -38,13 +38,13 @@ public class VentanaSistema {
 
 	JFrame frmCentroDeportivoS;
 	
-	private String [] pistas = {"padel", "tenis", "squash", "polideportivo"};
-	private String [] tipos = {"actividades", "pistas"};
+	//private String [] pistas = {"padel", "tenis", "squash", "polideportivo"};
+	private String [] tipos = {"Actividades", "Pistas"};
 	private String [] horasPistas = {"10:00", "11:00", "12:00", "13:00", "16:00", "17:00", "18:00", "19:00", "20:00"};
-	private String [] horasBatuka = {"10:00", "16:00"};
-	private String [] horasMantenimiento = {"11:00", "17:00"};
-	private String [] horasPilates = {"12:00", "18:00"};
-	private String [] horasMeditacion = {"20:00"};
+	//private String [] horasBatuka = {"10:00", "16:00"};
+	//private String [] horasMantenimiento = {"11:00", "17:00"};
+	//private String [] horasPilates = {"12:00", "18:00"};
+	//private String [] horasMeditacion = {"20:00"};
 	private JTextField textField;
 	private JTextField textField_1;
 	private ResultSet resultado;
@@ -76,7 +76,7 @@ public class VentanaSistema {
 		panel.setLayout(null);
 		
 		
-		final JComboBox comboBox_2 = new JComboBox(horasBatuka);
+		final JComboBox comboBox_2 = new JComboBox();
 		comboBox_2.setBounds(138, 67, 96, 20);
 		panel.add(comboBox_2);
 		
@@ -85,158 +85,196 @@ public class VentanaSistema {
 		
 		final JCalendar calendar = new JCalendar();
 		calendar.addPropertyChangeListener(new PropertyChangeListener() {
-			@SuppressWarnings("unchecked")
 			public void propertyChange(PropertyChangeEvent evt) {
-				if(comboBox.getSelectedIndex() == 1 && calendar.getCalendar().get(Calendar.DAY_OF_WEEK) != 7 && calendar.getCalendar().get(Calendar.DAY_OF_WEEK) != 1){
-					comboBox_2.removeAllItems();
-					for(int i=0; i<horasPistas.length; i++){
-						comboBox_2.addItem(horasPistas[i]);
-					}
-				}
-				else if(comboBox_1.getSelectedIndex() == 0 && (calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 2 || calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 4)){
-					comboBox_2.removeAllItems();
-					comboBox_2.addItem("10:00");
-					comboBox_2.addItem("16:00");
-					
-				}
-				else if(comboBox_1.getSelectedIndex() == 1 && (calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 2 || calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 4)){
-					comboBox_2.removeAllItems();
-					comboBox_2.addItem("11:00");
-					comboBox_2.addItem("17:00");
-				}
-				else if(comboBox_1.getSelectedIndex() == 2 && (calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 2 || calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 4)){
-					comboBox_2.removeAllItems();
-					comboBox_2.addItem("12:00");
-					comboBox_2.addItem("18:00");
-				}
-				else if(comboBox_1.getSelectedIndex() == 3 && (calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 3 || calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 5)){
-					comboBox_2.removeAllItems();
-					comboBox_2.addItem("10:00");
-					comboBox_2.addItem("16:00");
-				}
-				else if(comboBox_1.getSelectedIndex() == 4 && (calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 3 || calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 5)){
-					comboBox_2.removeAllItems();
-					comboBox_2.addItem("11:00");
-					comboBox_2.addItem("17:00");
-				}
-				else if(comboBox_1.getSelectedIndex() == 5 && (calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 3 || calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 5)){
-					comboBox_2.removeAllItems();
-					comboBox_2.addItem("12:00");
-					comboBox_2.addItem("18:00");
-				}
-				else if(comboBox_1.getSelectedIndex() == 6 && calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 6){
-					comboBox_2.removeAllItems();
-					comboBox_2.addItem("12:00");
-				}
-				else if(comboBox_1.getSelectedIndex() == 7 && calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 6){
-					comboBox_2.removeAllItems();
-					comboBox_2.addItem("18:00");
-				}
-				else comboBox_2.removeAllItems();
 			}
 		});
 		calendar.setBounds(10, 120, 224, 153);
 		panel.add(calendar);
 		
-		
-		
-		
-		comboBox_1.addActionListener(new ActionListener() {
-			@SuppressWarnings("unchecked")
+		final JComboBox comboBox_3 = new JComboBox();
+		comboBox_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(comboBox.getSelectedIndex() == 1 && calendar.getCalendar().get(Calendar.DAY_OF_WEEK) != 7 && calendar.getCalendar().get(Calendar.DAY_OF_WEEK) != 1){
-					comboBox_2.removeAllItems();
-					for(int i=0; i<horasPistas.length; i++){
-						comboBox_2.addItem(horasPistas[i]);
+				comboBox_2.removeAllItems();
+				try {
+					resultado = consulta2.executeQuery("SELECT hora FROM actividades_sesiones WHERE nombre = '"+String.valueOf(comboBox_1.getSelectedItem())+"'"+
+					"AND dia = '"+String.valueOf(comboBox_3.getSelectedItem())+"'");
+					while(resultado.next()){
+						String item = resultado.getString(1);
+						boolean exists = false;
+						 for (int index = 0; index < comboBox_2.getItemCount() && !exists; index++) {
+						   if (item.equals(comboBox_2.getItemAt(index))) {
+						     exists = true;
+						   }
+						 }
+						 if (!exists) {
+						   comboBox_2.addItem(item);
+						 }
 					}
+					resultado = consulta2.executeQuery("SELECT dia FROM actividades_sesiones WHERE nombre = '"+String.valueOf(comboBox_1.getSelectedItem())+"'");
+					while(resultado.next()){
+						String item = resultado.getString(1);
+						boolean exists = false;
+						 for (int index = 0; index < comboBox_3.getItemCount() && !exists; index++) {
+						   if (item.equals(comboBox_3.getItemAt(index))) {
+						     exists = true;
+						   }
+						 }
+						 if (!exists) {
+						   comboBox_3.addItem(item);
+						 }
+					}
+				} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 				}
-				else if(comboBox_1.getSelectedIndex() == 0 && (calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 2 || calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 4)){
-					comboBox_2.removeAllItems();
-					comboBox_2.addItem("10:00");
-					comboBox_2.addItem("16:00");
-					
-				}
-				else if(comboBox_1.getSelectedIndex() == 1 && (calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 2 || calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 4)){
-					comboBox_2.removeAllItems();
-					comboBox_2.addItem("11:00");
-					comboBox_2.addItem("17:00");
-				}
-				else if(comboBox_1.getSelectedIndex() == 2 && (calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 2 || calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 4)){
-					comboBox_2.removeAllItems();
-					comboBox_2.addItem("12:00");
-					comboBox_2.addItem("18:00");
-				}
-				else if(comboBox_1.getSelectedIndex() == 3 && (calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 3 || calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 5)){
-					comboBox_2.removeAllItems();
-					comboBox_2.addItem("10:00");
-					comboBox_2.addItem("16:00");
-				}
-				else if(comboBox_1.getSelectedIndex() == 4 && (calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 3 || calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 5)){
-					comboBox_2.removeAllItems();
-					comboBox_2.addItem("11:00");
-					comboBox_2.addItem("17:00");
-				}
-				else if(comboBox_1.getSelectedIndex() == 5 && (calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 3 || calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 5)){
-					comboBox_2.removeAllItems();
-					comboBox_2.addItem("12:00");
-					comboBox_2.addItem("18:00");
-				}
-				else if(comboBox_1.getSelectedIndex() == 6 && calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 6){
-					comboBox_2.removeAllItems();
-					comboBox_2.addItem("12:00");
-				}
-				else if(comboBox_1.getSelectedIndex() == 7 && calendar.getCalendar().get(Calendar.DAY_OF_WEEK) == 6){
-					comboBox_2.removeAllItems();
-					comboBox_2.addItem("18:00");
-				}
-				else comboBox_2.removeAllItems();
 			}
 		});
-		comboBox_1.addItem("batuka");
-		comboBox_1.addItem("mantenimiento");
-		comboBox_1.addItem("pilates");
-		comboBox_1.addItem("tonificacion");
-		comboBox_1.addItem("yoga");
-		comboBox_1.addItem("aerobox");
-		comboBox_1.addItem("step");
-		comboBox_1.addItem("meditacion");
+		comboBox_3.setBounds(32, 67, 96, 20);
+		panel.add(comboBox_3);
+		
 		comboBox_1.setBounds(116, 36, 118, 20);
 		panel.add(comboBox_1);
 		
 		
+		
+		
 		comboBox.addActionListener(new ActionListener() {
-			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent arg0) {
+				comboBox_1.removeAllItems();
 				if(comboBox.getSelectedIndex() == 0){
-					comboBox_1.removeAllItems();
-					comboBox_1.addItem("batuka");
-					comboBox_1.addItem("mantenimiento");
-					comboBox_1.addItem("pilates");
-					comboBox_1.addItem("tonificacion");
-					comboBox_1.addItem("yoga");
-					comboBox_1.addItem("aerobox");
-					comboBox_1.addItem("step");
-					comboBox_1.addItem("meditacion");
+					comboBox_3.setEnabled(true);
+					try {
+						resultado = consulta2.executeQuery("SELECT nombre FROM actividades_sesiones ORDER BY nombre ASC");
+						while(resultado.next()){
+							String item = resultado.getString(1);
+							boolean exists = false;
+							 for (int index = 0; index < comboBox_1.getItemCount() && !exists; index++) {
+							   if (item.equals(comboBox_1.getItemAt(index))) {
+							     exists = true;
+							   }
+							 }
+							 if (!exists) {
+							   comboBox_1.addItem(item);
+							 }
+						}
+						resultado = consulta2.executeQuery("SELECT dia FROM actividades_sesiones WHERE nombre = '"+String.valueOf(comboBox_1.getSelectedItem())+"'");
+						while(resultado.next()){
+							String item = resultado.getString(1);
+							boolean exists = false;
+							 for (int index = 0; index < comboBox_3.getItemCount() && !exists; index++) {
+							   if (item.equals(comboBox_3.getItemAt(index))) {
+							     exists = true;
+							   }
+							 }
+							 if (!exists) {
+							   comboBox_3.addItem(item);
+							 }
+						}
+						resultado = consulta2.executeQuery("SELECT hora FROM actividades_sesiones WHERE nombre = '"+String.valueOf(comboBox_1.getSelectedItem())+"'"+
+								"AND dia = '"+String.valueOf(comboBox_3.getSelectedItem())+"'");
+								while(resultado.next()){
+									String item = resultado.getString(1);
+									boolean exists = false;
+									 for (int index = 0; index < comboBox_2.getItemCount() && !exists; index++) {
+									   if (item.equals(comboBox_2.getItemAt(index))) {
+									     exists = true;
+									   }
+									 }
+									 if (!exists) {
+									   comboBox_2.addItem(item);
+									 }
+								}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 				else if(comboBox.getSelectedIndex() == 1){
-					comboBox_1.removeAllItems();
-					comboBox_1.addItem("padel");
-					comboBox_1.addItem("tenis");
-					comboBox_1.addItem("squash");
-					comboBox_1.addItem("polideportivo");
+					
+					try {
+						resultado = consulta2.executeQuery("SELECT nombre FROM pistas_tipos ORDER BY nombre ASC");
+						while(resultado.next()){
+							comboBox_1.addItem(resultado.getString(1));
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					
 					comboBox_2.removeAllItems();
+					comboBox_3.setEnabled(false);
 					
-					if(calendar.getCalendar().get(Calendar.DAY_OF_WEEK) != 7 && calendar.getCalendar().get(Calendar.DAY_OF_WEEK) != 1){
-						for(int i=0; i<horasPistas.length; i++){
-							comboBox_2.addItem(horasPistas[i]);
-						}
+					for(int i=0; i<horasPistas.length; i++){
+						comboBox_2.addItem(horasPistas[i]);
 					}
+					
 				}
 			}
 		});
 		comboBox.setBounds(10, 36, 96, 20);
 		panel.add(comboBox);
+		
+		
+		comboBox_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				comboBox_3.removeAllItems();
+				comboBox_2.removeAllItems();
+				
+				if(comboBox.getSelectedIndex() == 0){
+					try {
+						resultado = consulta2.executeQuery("SELECT dia FROM actividades_sesiones WHERE nombre = '"+String.valueOf(comboBox_1.getSelectedItem())+"'");
+						while(resultado.next()){
+							String item = resultado.getString(1);
+							boolean exists = false;
+							 for (int index = 0; index < comboBox_3.getItemCount() && !exists; index++) {
+							   if (item.equals(comboBox_3.getItemAt(index))) {
+							     exists = true;
+							   }
+							 }
+							 if (!exists) {
+							   comboBox_3.addItem(item);
+							 }
+						}
+						resultado = consulta2.executeQuery("SELECT nombre FROM actividades_sesiones ORDER BY nombre ASC");
+						while(resultado.next()){
+							String item = resultado.getString(1);
+							boolean exists = false;
+							 for (int index = 0; index < comboBox_1.getItemCount() && !exists; index++) {
+							   if (item.equals(comboBox_1.getItemAt(index))) {
+							     exists = true;
+							   }
+							 }
+							 if (!exists) {
+							   comboBox_1.addItem(item);
+							 }
+						}
+						resultado = consulta2.executeQuery("SELECT hora FROM actividades_sesiones WHERE nombre = '"+String.valueOf(comboBox_1.getSelectedItem())+"'"+
+								"AND dia = '"+String.valueOf(comboBox_3.getSelectedItem())+"'");
+								while(resultado.next()){
+									String item = resultado.getString(1);
+									boolean exists = false;
+									 for (int index = 0; index < comboBox_2.getItemCount() && !exists; index++) {
+									   if (item.equals(comboBox_2.getItemAt(index))) {
+									     exists = true;
+									   }
+									 }
+									 if (!exists) {
+									   comboBox_2.addItem(item);
+									 }
+								}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else if(comboBox.getSelectedIndex() == 1){
+					comboBox_2.removeAllItems();
+					for(int i=0; i<horasPistas.length; i++){
+						comboBox_2.addItem(horasPistas[i]);
+					}
+				}
+			}
+		});
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -257,7 +295,37 @@ public class VentanaSistema {
 				dia = calendar.getCalendar().get(Calendar.DAY_OF_MONTH);
 				mes = calendar.getCalendar().get(Calendar.MONTH) + 1;
 				ano = calendar.getCalendar().get(Calendar.YEAR);
-				if(comboBox_2.getSelectedIndex() == -1) JOptionPane.showMessageDialog(btnReservar, "Este d�a no hay reservas.", "Advertencia", 2);
+				int dia_semana = calendar.getCalendar().get(Calendar.DAY_OF_WEEK);
+				
+				if(comboBox.getSelectedIndex()==1 && (dia_semana == 1 || dia_semana == 7)){
+					JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
+					return;
+				}
+				if(comboBox.getSelectedIndex()==0){
+					if((String.valueOf(comboBox_3.getSelectedItem()).equals("Lunes")) && dia_semana != 2){
+						JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
+						return;
+					}
+					else if((String.valueOf(comboBox_3.getSelectedItem()).equals("Martes")) && dia_semana != 3){
+						JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
+						return;
+					}
+					else if((String.valueOf(comboBox_3.getSelectedItem()).equals("Miércoles")) && dia_semana != 4){
+						JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
+						return;
+					}
+					else if((String.valueOf(comboBox_3.getSelectedItem()).equals("Jueves")) && dia_semana != 5){
+						JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
+						return;
+					}
+					else if((String.valueOf(comboBox_3.getSelectedItem()).equals("Viernes")) && dia_semana != 6){
+						JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
+						return;
+					}
+				}
+				
+				
+				if(comboBox_2.getSelectedIndex() == -1) JOptionPane.showMessageDialog(btnReservar, "Este dï¿½a no hay reservas.", "Advertencia", 2);
 				else if(comboBox.getSelectedIndex() == 0){
 					try {
 						resultado = consulta2.executeQuery("SELECT fecha, hora, id_usuario FROM actividades"+
@@ -271,7 +339,7 @@ public class VentanaSistema {
 								" WHERE nombre = '"+String.valueOf(comboBox_1.getSelectedItem())+"' AND fecha = '"+dia+"/"+mes+"/"+ano+
 								"' AND id_usuario = '"+id_usuario+"'");
 						if(resultado.next() == true){
-							JOptionPane.showMessageDialog(btnReservar, "Ya hay otra reserva ese d�a.", "Advertencia", 2);
+							JOptionPane.showMessageDialog(btnReservar, "Ya hay otra reserva ese dï¿½a.", "Advertencia", 2);
 							return;
 						}
 						resultado = consulta2.executeQuery("SELECT fecha, hora, id_usuario FROM pistas"+
@@ -289,7 +357,7 @@ public class VentanaSistema {
 							cont = resultado.getInt(1);
 						}
 						if(!(cont < 15)){
-							JOptionPane.showMessageDialog(btnReservar, "La reserva est� completa.", "Advertencia", 2);
+							JOptionPane.showMessageDialog(btnReservar, "La reserva estï¿½ completa.", "Advertencia", 2);
 							return;
 						}
 					} catch (SQLException e2) {
@@ -297,10 +365,14 @@ public class VentanaSistema {
 						e2.printStackTrace();
 					}
 					try {
-						consulta2.executeQuery("INSERT INTO actividades (nombre, fecha, hora, id_usuario) " + "values ('"
+						resultado = consulta2.executeQuery("SELECT id_sesion FROM actividades_sesiones"+
+								" WHERE nombre = '"+String.valueOf(comboBox_1.getSelectedItem())+
+								"' AND dia = '"+String.valueOf(comboBox_3.getSelectedItem())+"' AND hora = '"+String.valueOf(comboBox_2.getSelectedItem())+"'");
+						resultado.next();
+						consulta2.executeQuery("INSERT INTO actividades (nombre, fecha, hora, id_usuario, id_sesion) " + "values ('"
 								+String.valueOf(comboBox_1.getSelectedItem())+"','"
 								+dia+"/"+mes+"/"+ano+"','"
-								+String.valueOf(comboBox_2.getSelectedItem())+"','"+id_usuario+"')");
+								+String.valueOf(comboBox_2.getSelectedItem())+"','"+id_usuario+"','"+resultado.getString(1)+"')");
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -323,7 +395,7 @@ public class VentanaSistema {
 								" WHERE fecha = '"+dia+"/"+mes+"/"+ano+
 								"' AND id_usuario = '"+id_usuario+"'");
 						if(resultado.next() == true){
-							JOptionPane.showMessageDialog(btnReservar, "Ya hay otra reserva ese d�a.", "Advertencia", 2);
+							JOptionPane.showMessageDialog(btnReservar, "Ya hay otra reserva ese dï¿½a.", "Advertencia", 2);
 							return;
 						}
 						resultado = consulta2.executeQuery("SELECT fecha, hora FROM pistas"+
@@ -374,6 +446,8 @@ public class VentanaSistema {
 		lblReservarActividadYo.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblReservarActividadYo.setBounds(10, 11, 174, 14);
 		panel.add(lblReservarActividadYo);
+		
+		
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setBounds(10, 11, 52, 14);
@@ -442,6 +516,53 @@ public class VentanaSistema {
 		textField_2.setColumns(10);
 		
 		try {
+			resultado = consulta2.executeQuery("SELECT nombre FROM actividades_sesiones ORDER BY nombre ASC");
+			while(resultado.next()){
+				String item = resultado.getString(1);
+				boolean exists = false;
+				 for (int index = 0; index < comboBox_1.getItemCount() && !exists; index++) {
+				   if (item.equals(comboBox_1.getItemAt(index))) {
+				     exists = true;
+				   }
+				 }
+				 if (!exists) {
+				   comboBox_1.addItem(item);
+				 }
+			}
+			resultado = consulta2.executeQuery("SELECT dia FROM actividades_sesiones WHERE nombre = '"+String.valueOf(comboBox_1.getSelectedItem())+"'");
+			while(resultado.next()){
+				String item = resultado.getString(1);
+				boolean exists = false;
+				 for (int index = 0; index < comboBox_3.getItemCount() && !exists; index++) {
+				   if (item.equals(comboBox_3.getItemAt(index))) {
+				     exists = true;
+				   }
+				 }
+				 if (!exists) {
+				   comboBox_3.addItem(item);
+				 }
+			}
+			resultado = consulta2.executeQuery("SELECT hora FROM actividades_sesiones WHERE nombre = '"+String.valueOf(comboBox_1.getSelectedItem())+"'"+
+					"AND dia = '"+String.valueOf(comboBox_3.getSelectedItem())+"'");
+					while(resultado.next()){
+						String item = resultado.getString(1);
+						boolean exists = false;
+						 for (int index = 0; index < comboBox_2.getItemCount() && !exists; index++) {
+						   if (item.equals(comboBox_2.getItemAt(index))) {
+						     exists = true;
+						   }
+						 }
+						 if (!exists) {
+						   comboBox_2.addItem(item);
+						 }
+					}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		try {
 			resultado = consulta2.executeQuery("SELECT nombre, id_usuario, tipo_cuenta FROM usuarios WHERE nombre = '" + Acceder.getNombre() + "' AND clave = '" + Acceder.getClave() + "'");
 			resultado.next();
 			textField.setText(resultado.getString("nombre"));
@@ -449,7 +570,7 @@ public class VentanaSistema {
 			id_usuario = resultado.getString("id_usuario");
 			textField_1.setText(id_usuario);
 			tipo = resultado.getInt("tipo_cuenta");
-			if(tipo == 0) textField_2.setText("b�sico");
+			if(tipo == 0) textField_2.setText("bï¿½sico");
 			else if(tipo == 1) textField_2.setText("premium");
 			else if(tipo == 2) textField_2.setText("administrador");
 			
@@ -490,7 +611,7 @@ public class VentanaSistema {
 			final JButton button = new JButton("?");
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					String str = "Para crear una reserva: elegir la actividad, el d�a y la hora y pulsar reservar.\n"+
+					String str = "Para crear una reserva: elegir la actividad, el dï¿½a y la hora y pulsar reservar.\n"+
 							"Para eliminar la reserva: seleccionarla y pulsar cancelar reserva.";
 					JOptionPane.showMessageDialog(button, str , "Ayuda", 3);
 				}
@@ -583,7 +704,7 @@ public class VentanaSistema {
 				public void actionPerformed(ActionEvent e) {
 					String str1= "Aplicacion ........................asdfasdfadf..asdf";
 					
-					JOptionPane.showMessageDialog(null, str1, "Ayuda de la Aplicación", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, str1, "Ayuda de la AplicaciÃ³n", JOptionPane.INFORMATION_MESSAGE);
 					
 					
 				}
@@ -596,9 +717,9 @@ public class VentanaSistema {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					String str2= "Aplicación desarrollada para la asignatura Ingenieria del software II\n\n"
+					String str2= "AplicaciÃ³n desarrollada para la asignatura Ingenieria del software II\n\n"
 							+ "Alumnos: Raquel \n Ismael \n Cesar \n\n"
-							+ "Versión: 2.0 ";
+							+ "VersiÃ³n: 2.0 ";
 					
 					JOptionPane.showMessageDialog(null, str2, "About", JOptionPane.INFORMATION_MESSAGE);
 					
