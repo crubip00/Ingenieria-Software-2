@@ -31,8 +31,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
-import oracle.net.aso.o;
-
 
 public class VentanaSistema {
 
@@ -49,6 +47,7 @@ public class VentanaSistema {
 	private JTextField textField_1;
 	private ResultSet resultado;
 	private String id_usuario;
+	@SuppressWarnings("rawtypes")
 	DefaultListModel modelo = new DefaultListModel();
 	private int dia;
 	private int mes;
@@ -124,7 +123,7 @@ public class VentanaSistema {
 						 }
 					}
 				} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				// 
 				e.printStackTrace();
 				}
 			}
@@ -185,7 +184,7 @@ public class VentanaSistema {
 									 }
 								}
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
+						// 
 						e.printStackTrace();
 					}
 				}
@@ -197,7 +196,7 @@ public class VentanaSistema {
 							comboBox_1.addItem(resultado.getString(1));
 						}
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
+						// 
 						e.printStackTrace();
 					}
 					
@@ -263,7 +262,7 @@ public class VentanaSistema {
 									 }
 								}
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
+						// 
 						e.printStackTrace();
 					}
 				}
@@ -361,7 +360,7 @@ public class VentanaSistema {
 							return;
 						}
 					} catch (SQLException e2) {
-						// TODO Auto-generated catch block
+						// 
 						e2.printStackTrace();
 					}
 					try {
@@ -374,7 +373,7 @@ public class VentanaSistema {
 								+dia+"/"+mes+"/"+ano+"','"
 								+String.valueOf(comboBox_2.getSelectedItem())+"','"+id_usuario+"','"+resultado.getString(1)+"')");
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
+						// 
 						e1.printStackTrace();
 					}
 				}
@@ -406,7 +405,7 @@ public class VentanaSistema {
 							return;
 						}
 					} catch (SQLException e2) {
-						// TODO Auto-generated catch block
+						// 
 						e2.printStackTrace();
 					}
 					
@@ -416,7 +415,7 @@ public class VentanaSistema {
 								+dia+"/"+mes+"/"+ano+"','"
 								+String.valueOf(comboBox_2.getSelectedItem())+"','"+id_usuario+"')");
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
+						// 
 						e1.printStackTrace();
 					}
 				}
@@ -433,7 +432,7 @@ public class VentanaSistema {
 					}
 					list.setModel(modelo);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+					// 
 					e1.printStackTrace();
 				}
 				
@@ -480,7 +479,7 @@ public class VentanaSistema {
 					consulta2.executeQuery("DELETE FROM pistas WHERE nombre = '"
 							+sol[0]+"' AND fecha = '"+sol[1]+"' AND hora = '"+sol[2]+"' AND id_usuario = '"+id_usuario+"'");
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+					// 
 					e.printStackTrace();
 				}
 				
@@ -496,7 +495,7 @@ public class VentanaSistema {
 					}
 					list.setModel(modelo);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+					// 
 					e1.printStackTrace();
 				}
 			}
@@ -557,7 +556,7 @@ public class VentanaSistema {
 						 }
 					}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// 
 			e.printStackTrace();
 		}
 		
@@ -576,7 +575,7 @@ public class VentanaSistema {
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// 
 			e.printStackTrace();
 		}
 		
@@ -729,7 +728,7 @@ public class VentanaSistema {
 			
 			
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+			// 
 			e1.printStackTrace();
 		}
 	}

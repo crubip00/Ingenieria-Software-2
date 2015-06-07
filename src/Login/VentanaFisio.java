@@ -3,9 +3,6 @@ package Login;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import com.toedter.calendar.JDayChooser;
-import com.toedter.calendar.JMonthChooser;
-import com.toedter.calendar.JYearChooser;
 import com.toedter.calendar.JCalendar;
 
 import javax.swing.DefaultListModel;
@@ -24,9 +21,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
 
-import javax.swing.JScrollBar;
 import javax.swing.JButton;
-
+@SuppressWarnings("rawtypes")
 public class VentanaFisio {
 
 	JFrame frameFisio;
@@ -48,10 +44,11 @@ public class VentanaFisio {
 	//private int cont = 1;
 	
 
+	@SuppressWarnings("unchecked")
 	public VentanaFisio(final Statement st) {
 
 		frameFisio = new JFrame("Consulta Fisioterapia");
-		frameFisio.setBounds(100, 100, 686, 462);
+		frameFisio.setBounds(100, 100, 720, 474);
 		frameFisio.setLocationRelativeTo(null);
 		frameFisio.getContentPane().setLayout(null);
 
@@ -108,7 +105,7 @@ public class VentanaFisio {
 			}
 
 		} catch (SQLException e2) {
-			// TODO Auto-generated catch block
+			// 
 			e2.printStackTrace();
 		}
 
@@ -156,7 +153,7 @@ public class VentanaFisio {
 					}while(rs.next() == true);
 					cont--;
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+					// 
 					e1.printStackTrace();
 				}
 				
@@ -164,7 +161,7 @@ public class VentanaFisio {
 				try {
 					rs = st.executeQuery("SELECT fecha, hora  FROM fisio  WHERE fecha = '"+ dia+ "/"+ mes+ "/"+ ano+ "' AND hora = '"+String.valueOf(comboHoras.getSelectedItem())+"'");
 				} catch (SQLException e3) {
-					// TODO Auto-generated catch block
+					// 
 					e3.printStackTrace();
 				}
 				
@@ -192,12 +189,13 @@ public class VentanaFisio {
 					
 
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+					// 
 					e1.printStackTrace();
 				}
 				
 				JOptionPane.showMessageDialog(null,
 						"La reserva se ha realizado correctamente!");
+				textDescripcion.setText("");
 				
 				// Actualizar la lista de reservas dinamicamente!
 
@@ -216,7 +214,7 @@ public class VentanaFisio {
 					}
 
 				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
+					// 
 					e2.printStackTrace();
 				}
 				
@@ -231,7 +229,7 @@ public class VentanaFisio {
 		frameFisio.getContentPane().add(lblDescripcion);
 
 		btnBorrarReserva = new JButton("Borrar Reserva");
-		btnBorrarReserva.setBounds(500, 297, 118, 23);
+		btnBorrarReserva.setBounds(522, 297, 133, 23);
 		frameFisio.getContentPane().add(btnBorrarReserva);
 		btnBorrarReserva.addActionListener(new ActionListener() {
 
@@ -240,6 +238,7 @@ public class VentanaFisio {
 
 				String elemento = (String) listaReservas.getSelectedValue();
 
+				@SuppressWarnings("unused")
 				int index = listaReservas.getSelectedIndex();
 
 				String idEliminar = elemento.split(" ")[0];
@@ -273,15 +272,22 @@ public class VentanaFisio {
 					}
 
 				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
+					// 
 					e2.printStackTrace();
 				}
+				
+				
+				
+				
+				
 
 			}
 		});
+		
+		
 
 		botonDetalles = new JButton("Mostrar Detalles");
-		botonDetalles.setBounds(379, 297, 111, 23);
+		botonDetalles.setBounds(379, 297, 133, 23);
 		frameFisio.getContentPane().add(botonDetalles);
 		botonDetalles.addActionListener(new ActionListener() {
 
@@ -290,6 +296,7 @@ public class VentanaFisio {
 
 				String elemento = (String) listaReservas.getSelectedValue();
 
+				@SuppressWarnings("unused")
 				int index = listaReservas.getSelectedIndex();
 
 				String idreserva = elemento.split(" ")[0];

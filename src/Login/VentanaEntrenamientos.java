@@ -1,8 +1,5 @@
 package Login;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -11,14 +8,8 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -28,8 +19,8 @@ import javax.swing.JTextField;
 public class VentanaEntrenamientos {
 
 	JFrame frameEntrenamientos;
-	private ResultSet resultado;
 	private JTextField textUsuario;
+	
 
 	public VentanaEntrenamientos(final Statement consulta3) {
 
@@ -38,12 +29,12 @@ public class VentanaEntrenamientos {
 		frameEntrenamientos.setBounds(100, 100, 814, 570);
 		frameEntrenamientos.getContentPane().setLayout(null);
 		frameEntrenamientos.setLocationRelativeTo(null);
+		
 
 		// Icono, Botones y Action Listener de weider:
 
 		JLabel labelWeider = new JLabel("");
-		labelWeider.setIcon(new ImageIcon(
-				"C:\\Users\\CésarJesús\\workspace\\GYM\\images\\Weider.png"));
+		labelWeider.setIcon(new ImageIcon("images\\Weider.png"));
 		labelWeider.setBounds(55, 98, 133, 89);
 		frameEntrenamientos.getContentPane().add(labelWeider);
 
@@ -106,6 +97,8 @@ public class VentanaEntrenamientos {
 
 					gc = new Conexion();
 					conn = gc.getConexion();
+					
+					
 
 					 String path = "C:\\Users\\CésarJesús\\Downloads";
 
@@ -121,7 +114,7 @@ public class VentanaEntrenamientos {
 					ioe.printStackTrace();
 				}
 				
-				JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente,\n mire en su carpeta de descargas!");
+				//JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente");
 
 			}
 
@@ -135,8 +128,7 @@ public class VentanaEntrenamientos {
 		frameEntrenamientos.getContentPane().add(lblFullBody);
 
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(
-				"C:\\Users\\CésarJesús\\workspace\\GYM\\images\\fullBody.png"));
+		lblNewLabel_1.setIcon(new ImageIcon("images\\fullBody.png"));
 		lblNewLabel_1.setBounds(318, 98, 133, 89);
 		frameEntrenamientos.getContentPane().add(lblNewLabel_1);
 
@@ -206,7 +198,7 @@ public class VentanaEntrenamientos {
 					ioe.printStackTrace();
 				}
 				
-				JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente,\n mire en su carpeta de descargas!");
+				//JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente");
 				
 			}
 		});
@@ -224,8 +216,7 @@ public class VentanaEntrenamientos {
 		frameEntrenamientos.getContentPane().add(lblCrossfit);
 
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(
-				"C:\\Users\\CésarJesús\\workspace\\GYM\\images\\crossfit.png"));
+		label.setIcon(new ImageIcon("images\\crossfit.png"));
 		label.setBounds(605, 98, 116, 89);
 		frameEntrenamientos.getContentPane().add(label);
 
@@ -300,8 +291,7 @@ public class VentanaEntrenamientos {
 					ioe.printStackTrace();
 				}
 				
-				JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente,\n mire en su carpeta de descargas!");
-				
+				//JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente");			
 			}
 		});
 		
@@ -314,8 +304,7 @@ public class VentanaEntrenamientos {
 		frameEntrenamientos.getContentPane().add(lblVolumen);
 
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(
-				"C:\\Users\\CésarJesús\\workspace\\GYM\\images\\rutina1.png"));
+		label_1.setIcon(new ImageIcon("images\\rutina1.png"));
 		label_1.setBounds(70, 319, 133, 121);
 		frameEntrenamientos.getContentPane().add(label_1);
 
@@ -349,9 +338,8 @@ public class VentanaEntrenamientos {
 					ioe.printStackTrace();
 				}
 				
-				JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente,\n mire en su carpeta de descargas!");
-				
-			}
+				//JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente");
+				}
 		});
 
 		JButton botonPreviaGAP = new JButton("Vista Previa");
@@ -393,8 +381,7 @@ public class VentanaEntrenamientos {
 		frameEntrenamientos.getContentPane().add(lblBodyPump);
 
 		JLabel label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(
-				"C:\\Users\\CésarJesús\\workspace\\GYM\\images\\bodypump.png"));
+		label_2.setIcon(new ImageIcon("images\\bodypump.png"));
 		label_2.setBounds(318, 300, 133, 121);
 		frameEntrenamientos.getContentPane().add(label_2);
 
@@ -453,8 +440,7 @@ public class VentanaEntrenamientos {
 					ioe.printStackTrace();
 				}
 				
-				JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente,\n mire en su carpeta de descargas!");
-				
+				//JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente");			
 			}
 		});
 		
@@ -467,9 +453,12 @@ public class VentanaEntrenamientos {
 		lblVolumen_1.setBounds(632, 274, 70, 17);
 		frameEntrenamientos.getContentPane().add(lblVolumen_1);
 
-		JLabel label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon(
-				"C:\\Users\\CésarJesús\\workspace\\GYM\\images\\volumen.png"));
+		
+		JLabel label_3 = new JLabel("");		
+		label_3.setIcon(new ImageIcon("images\\volumen.png"));
+		
+		
+		 
 		label_3.setBounds(605, 300, 133, 121);
 		frameEntrenamientos.getContentPane().add(label_3);
 
@@ -547,8 +536,7 @@ public class VentanaEntrenamientos {
 					ioe.printStackTrace();
 				}
 				
-				JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente,\n mire en su carpeta de descargas!");
-				
+				//JOptionPane.showMessageDialog(null, "El archivo se ha descargado correctamente");
 			}
 		});
 		

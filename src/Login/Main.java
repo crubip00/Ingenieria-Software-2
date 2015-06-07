@@ -2,6 +2,7 @@ package Login;
 
 public class Main {
 
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		
 		Conexion conexion = new Conexion();

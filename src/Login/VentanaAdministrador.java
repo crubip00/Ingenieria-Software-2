@@ -24,10 +24,11 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
-
+@SuppressWarnings("rawtypes")
 public class VentanaAdministrador {
 
 	JFrame frmAdministracion;
+	@SuppressWarnings("unused")
 	private String[] var = {"usuarios", "actividades", "pistas"};
 	private String[] var2 = {"basico", "premium", "administrador"};
 	private JTextField textField;
@@ -58,6 +59,7 @@ public class VentanaAdministrador {
 	private JTextField textField_8;
 	private JTextField textField_11;
 
+	@SuppressWarnings("unchecked")
 	public VentanaAdministrador(final Statement consulta3) {
 		frmAdministracion = new JFrame();
 		frmAdministracion.setTitle("Administracion");
@@ -70,7 +72,7 @@ public class VentanaAdministrador {
 			resultadoUsuarios.next();
 			id_usuario = resultadoUsuarios.getString("id_usuario");
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+			// 
 			e1.printStackTrace();
 		}
 		try {
@@ -115,7 +117,7 @@ public class VentanaAdministrador {
 							
 							
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
+							
 							e1.printStackTrace();
 						}
 						try {
@@ -125,7 +127,7 @@ public class VentanaAdministrador {
 							}
 							listUsuarios.setModel(modeloUsuarios);
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
+							
 							e1.printStackTrace();
 						}
 				}
@@ -217,7 +219,7 @@ public class VentanaAdministrador {
 							consulta3.executeQuery("DELETE FROM usuarios WHERE id_usuario = '"
 									+sol[0]+"' AND nombre = '"+sol[1]+"' AND clave = '"+sol[2]+"' AND tipo_cuenta = '"+sol[3]+"'");
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
+							
 							e1.printStackTrace();
 						}
 						
@@ -235,7 +237,7 @@ public class VentanaAdministrador {
 									modeloUsuarios.addElement(resultadoUsuarios.getString(1)+"  "+resultadoUsuarios.getString(2)+"  "+resultadoUsuarios.getString(3)+"  "+resultadoUsuarios.getString(4));
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
+								// 
 								e1.printStackTrace();
 							}
 							try {
@@ -244,7 +246,7 @@ public class VentanaAdministrador {
 									modeloActividades.addElement(resultadoActividades.getString(4)+"  "+resultadoActividades.getString(1)+"  "+resultadoActividades.getString(2)+"  "+resultadoActividades.getString(3));
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
+								// 
 								e1.printStackTrace();
 							}
 							try {
@@ -253,7 +255,7 @@ public class VentanaAdministrador {
 									modeloPistas.addElement(resultadoPistas.getString(4)+"  "+resultadoPistas.getString(1)+"  "+resultadoPistas.getString(2)+"  "+resultadoPistas.getString(3));
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
+								// 
 								e1.printStackTrace();
 							}
 						
@@ -310,7 +312,7 @@ public class VentanaAdministrador {
 						}while(resultadoUsuarios.next() == true);
 						cont--;
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
+						// 
 						e1.printStackTrace();
 					}
 					try {
@@ -319,7 +321,7 @@ public class VentanaAdministrador {
 								+textField.getText()+"','"
 								+textField_1.getText()+"')");
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
+						// 
 						e1.printStackTrace();
 					}
 					textField.setText("");
@@ -331,7 +333,7 @@ public class VentanaAdministrador {
 								modeloUsuarios.addElement(resultadoUsuarios.getString(1)+"  "+resultadoUsuarios.getString(2)+"  "+resultadoUsuarios.getString(3)+"  "+resultadoUsuarios.getString(4));
 							}
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
+							// 
 							e1.printStackTrace();
 						}
 						listUsuarios.setModel(modeloUsuarios);
@@ -364,7 +366,7 @@ public class VentanaAdministrador {
 									"  " + resultadoUsuarios.getString(3) + "  " + resultadoUsuarios.getString(4) + "\n";
 						}
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
+						// 
 						e1.printStackTrace();
 					}
 					
@@ -469,7 +471,7 @@ public class VentanaAdministrador {
 							consulta3.executeQuery("DELETE FROM actividades WHERE nombre = '"
 									+sol[1]+"' AND fecha = '"+sol[2]+"' AND hora = '"+sol[3]+"' AND id_usuario = '"+sol[0]+"'");
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
+							// 
 							e1.printStackTrace();
 						}
 						
@@ -481,7 +483,7 @@ public class VentanaAdministrador {
 									modeloActividades.addElement(resultadoActividades.getString(4)+"  "+resultadoActividades.getString(1)+"  "+resultadoActividades.getString(2)+"  "+resultadoActividades.getString(3));
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
+								// 
 								e1.printStackTrace();
 							}
 						
@@ -569,7 +571,7 @@ public class VentanaAdministrador {
 							consulta3.executeQuery("DELETE FROM pistas WHERE nombre = '"
 									+sol[1]+"' AND fecha = '"+sol[2]+"' AND hora = '"+sol[3]+"' AND id_usuario = '"+sol[0]+"'");
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
+							// 
 							e1.printStackTrace();
 						}
 						
@@ -581,7 +583,7 @@ public class VentanaAdministrador {
 									modeloPistas.addElement(resultadoPistas.getString(4)+"  "+resultadoPistas.getString(1)+"  "+resultadoPistas.getString(2)+"  "+resultadoPistas.getString(3));
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
+								// 
 								e1.printStackTrace();
 							}
 						
@@ -619,7 +621,7 @@ public class VentanaAdministrador {
 				textField_5.setText(id_usuario);
 				textField_7.setText(id_usuario);
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 			
@@ -631,7 +633,7 @@ public class VentanaAdministrador {
 					modeloUsuarios.addElement(resultadoUsuarios.getString(1)+"  "+resultadoUsuarios.getString(2)+"  "+resultadoUsuarios.getString(3)+"  "+resultadoUsuarios.getString(4));
 				}
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 			
@@ -645,7 +647,7 @@ public class VentanaAdministrador {
 					modeloActividades.addElement(resultadoActividades.getString(4)+"  "+resultadoActividades.getString(1)+"  "+resultadoActividades.getString(2)+"  "+resultadoActividades.getString(3));
 				}
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 			
@@ -659,7 +661,7 @@ public class VentanaAdministrador {
 					modeloActividades2.addElement(resultadoActividades2.getString(4)+"  "+resultadoActividades2.getString(1)+"  "+resultadoActividades2.getString(2)+"  "+resultadoActividades2.getString(3));
 				}
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 			
@@ -691,7 +693,7 @@ public class VentanaAdministrador {
 						try {
 							consulta3.executeQuery("DELETE FROM actividades WHERE id_sesion = '"+sol[0]+"'");
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
+							// 
 							e1.printStackTrace();
 						}
 						
@@ -703,7 +705,7 @@ public class VentanaAdministrador {
 									modeloActividades.addElement(resultadoActividades.getString(4)+"  "+resultadoActividades.getString(1)+"  "+resultadoActividades.getString(2)+"  "+resultadoActividades.getString(3));
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
+								// 
 								e1.printStackTrace();
 							}
 						
@@ -713,7 +715,7 @@ public class VentanaAdministrador {
 							consulta3.executeQuery("DELETE FROM actividades_sesiones WHERE id_sesion = '"
 									+sol[0]+"'");
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
+							// 
 							e1.printStackTrace();
 						}
 						
@@ -725,7 +727,7 @@ public class VentanaAdministrador {
 									modeloActividades2.addElement(resultadoActividades2.getString(4)+"  "+resultadoActividades2.getString(1)+"  "+resultadoActividades2.getString(2)+"  "+resultadoActividades2.getString(3));
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
+								// 
 								e1.printStackTrace();
 							}
 						
@@ -774,7 +776,7 @@ public class VentanaAdministrador {
 						}while(resultadoActividades2.next() == true);
 						cont--;
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
+						// 
 						e1.printStackTrace();
 					}
 					try {
@@ -784,7 +786,7 @@ public class VentanaAdministrador {
 								+comboBox_1.getSelectedItem().toString()+"','"
 								+cont+"')");
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
+						// 
 						e1.printStackTrace();
 					}
 					textField_11.setText("");
@@ -795,7 +797,7 @@ public class VentanaAdministrador {
 								modeloActividades2.addElement(resultadoActividades2.getString(4)+"  "+resultadoActividades2.getString(1)+"  "+resultadoActividades2.getString(2)+"  "+resultadoActividades2.getString(3));
 							}
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
+							// 
 							e1.printStackTrace();
 						}
 						listActividades2.setModel(modeloActividades2);
@@ -813,7 +815,7 @@ public class VentanaAdministrador {
 					modeloPistas.addElement(resultadoPistas.getString(4)+"  "+resultadoPistas.getString(1)+"  "+resultadoPistas.getString(2)+"  "+resultadoPistas.getString(3));
 				}
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 			
@@ -826,7 +828,7 @@ public class VentanaAdministrador {
 					modeloPistas2.addElement(resultadoPistas2.getString(2)+"  "+resultadoPistas2.getString(1));
 				}
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				// 
 				e1.printStackTrace();
 			}
 			
@@ -849,7 +851,7 @@ public class VentanaAdministrador {
 						try {
 							consulta3.executeQuery("DELETE FROM pistas WHERE nombre = '"+sol[1]+"'");
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
+							// 
 							e1.printStackTrace();
 						}
 						
@@ -861,7 +863,7 @@ public class VentanaAdministrador {
 									modeloPistas.addElement(resultadoPistas.getString(4)+"  "+resultadoPistas.getString(1)+"  "+resultadoPistas.getString(2)+"  "+resultadoPistas.getString(3));
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
+								// 
 								e1.printStackTrace();
 							}
 						
@@ -871,7 +873,7 @@ public class VentanaAdministrador {
 							consulta3.executeQuery("DELETE FROM pistas_tipos WHERE nombre = '"
 									+sol[1]+"' AND id_pista = '"+sol[0]+"'");
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
+							// 
 							e1.printStackTrace();
 						}
 						
@@ -883,7 +885,7 @@ public class VentanaAdministrador {
 									modeloPistas2.addElement(resultadoPistas2.getString(2)+"  "+resultadoPistas2.getString(1));
 								}
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
+								// 
 								e1.printStackTrace();
 							}
 						
@@ -916,7 +918,7 @@ public class VentanaAdministrador {
 						}while(resultadoPistas2.next() == true);
 						cont--;
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
+						// 
 						e1.printStackTrace();
 					}
 					try {
@@ -924,7 +926,7 @@ public class VentanaAdministrador {
 								+textField_8.getText()+"','"
 								+cont+"')");
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
+						// 
 						e1.printStackTrace();
 					}
 					textField_8.setText("");
@@ -935,7 +937,7 @@ public class VentanaAdministrador {
 								modeloPistas2.addElement(resultadoPistas2.getString(2)+"  "+resultadoPistas2.getString(1));
 							}
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
+							// 
 							e1.printStackTrace();
 						}
 						listPistas2.setModel(modeloPistas2);
@@ -943,7 +945,7 @@ public class VentanaAdministrador {
 			});
 			
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+			// 
 			e1.printStackTrace();
 		}
 		

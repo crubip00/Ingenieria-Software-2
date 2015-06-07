@@ -1,7 +1,5 @@
 package Login;
 
-import java.awt.EventQueue;
-
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -11,7 +9,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
 import java.awt.Font;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
@@ -25,7 +22,9 @@ public class VentanaTienda {
 	private JTextField textTotal;
 	private JTextField textUsuario;
 	private JScrollPane scrollPane;
+	@SuppressWarnings("rawtypes")
 	private JList listaCompra;// = new JList();
+	@SuppressWarnings("rawtypes")
 	private DefaultListModel modelListaCompra;
 
 	DecimalFormat df = new DecimalFormat("0.00");
@@ -36,6 +35,7 @@ public class VentanaTienda {
 		initialize();
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initialize() {
 		frameTienda = new JFrame();
 		frameTienda.setTitle("Tienda 'En Forma'");
@@ -57,8 +57,7 @@ public class VentanaTienda {
 		JLabel labelProtes = new JLabel("");
 		labelProtes.setBounds(26, 36, 123, 100);
 		frameTienda.getContentPane().add(labelProtes);
-		labelProtes.setIcon(new ImageIcon(
-				"C:\\Users\\CésarJesús\\workspace\\GYM\\images\\Proteina.png"));
+		labelProtes.setIcon(new ImageIcon("images\\Proteina.png"));
 
 		JButton anadirProtes = new JButton("Añadir");
 		anadirProtes.setBounds(44, 147, 89, 23);
@@ -86,8 +85,7 @@ public class VentanaTienda {
 		labelVitaminas.setBounds(217, 50, 107, 85);
 		frameTienda.getContentPane().add(labelVitaminas);
 		labelVitaminas
-				.setIcon(new ImageIcon(
-						"C:\\Users\\C\u00E9sarJes\u00FAs\\workspace\\GYM\\images\\Multivitaminas.png"));
+				.setIcon(new ImageIcon("images\\Multivitaminas.png"));
 
 		JButton anadirVitaminas = new JButton("Añadir");
 		anadirVitaminas.setBounds(227, 147, 89, 23);
@@ -128,14 +126,12 @@ public class VentanaTienda {
 
 		JLabel labelBolsa = new JLabel("");
 		labelBolsa
-				.setIcon(new ImageIcon(
-						"C:\\Users\\CésarJesús\\workspace\\GYM\\images\\Bolsadeporte.png"));
+				.setIcon(new ImageIcon("images\\Bolsadeporte.png"));
 		labelBolsa.setBounds(26, 219, 123, 121);
 		frameTienda.getContentPane().add(labelBolsa);
 
 		JLabel labelPesas = new JLabel("");
-		labelPesas.setIcon(new ImageIcon(
-				"C:\\Users\\CésarJesús\\workspace\\GYM\\images\\Pesas.png"));
+		labelPesas.setIcon(new ImageIcon("images\\Pesas.png"));
 		labelPesas.setBounds(217, 219, 112, 110);
 		frameTienda.getContentPane().add(labelPesas);
 
@@ -177,8 +173,7 @@ public class VentanaTienda {
 		});
 
 		JLabel labelBarrita = new JLabel("");
-		labelBarrita.setIcon(new ImageIcon(
-				"C:\\Users\\CésarJesús\\workspace\\GYM\\images\\barrita.png"));
+		labelBarrita.setIcon(new ImageIcon("images\\barrita.png"));
 		labelBarrita.setBounds(26, 434, 123, 117);
 		frameTienda.getContentPane().add(labelBarrita);
 
@@ -202,8 +197,7 @@ public class VentanaTienda {
 		});
 
 		JLabel labelBotellin = new JLabel("");
-		labelBotellin.setIcon(new ImageIcon(
-				"C:\\Users\\CésarJesús\\workspace\\GYM\\images\\botellin.png"));
+		labelBotellin.setIcon(new ImageIcon("images\\botellin.png"));
 		labelBotellin.setBounds(217, 434, 123, 117);
 		frameTienda.getContentPane().add(labelBotellin);
 
@@ -253,6 +247,7 @@ public class VentanaTienda {
 				
 				modelListaCompra.clear();
 				textTotal.setText("");
+				contadorCesta=0;
 					
 
 				JOptionPane.showMessageDialog(null, strCompra,
