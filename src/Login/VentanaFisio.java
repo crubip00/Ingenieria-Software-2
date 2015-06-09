@@ -48,6 +48,7 @@ public class VentanaFisio {
 	public VentanaFisio(final Statement st) {
 
 		frameFisio = new JFrame("Consulta Fisioterapia");
+		frameFisio.setResizable(false);
 		frameFisio.setBounds(100, 100, 720, 474);
 		frameFisio.setLocationRelativeTo(null);
 		frameFisio.getContentPane().setLayout(null);
@@ -110,6 +111,7 @@ public class VentanaFisio {
 		}
 
 		textUsuario = new JTextField();
+		textUsuario.setEditable(false);
 		textUsuario.setBounds(532, 42, 86, 20);
 		frameFisio.getContentPane().add(textUsuario);
 		textUsuario.setColumns(10);
@@ -223,7 +225,7 @@ public class VentanaFisio {
 			}
 		});
 
-		JLabel lblDescripcion = new JLabel("Descripción: ");
+		JLabel lblDescripcion = new JLabel("DescripciÃ³n: ");
 		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblDescripcion.setBounds(126, 310, 78, 14);
 		frameFisio.getContentPane().add(lblDescripcion);
