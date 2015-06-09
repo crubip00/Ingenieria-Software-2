@@ -38,6 +38,7 @@ public class VentanaTienda {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initialize() {
 		frameTienda = new JFrame();
+		frameTienda.setResizable(false);
 		frameTienda.setTitle("Tienda 'En Forma'");
 		frameTienda.setBounds(100, 100, 694, 658);
 		frameTienda.setLocationRelativeTo(null);
@@ -52,14 +53,14 @@ public class VentanaTienda {
 		frameTienda.getContentPane().add(scrollPane);
 		scrollPane.setBounds(450, 223, 200, 259);
 
-		// Icono y Botones Añadir y borrar Item PROTEINAS a la cesta de compra:
+		// Icono y Botones AÃ±adir y borrar Item PROTEINAS a la cesta de compra:
 
 		JLabel labelProtes = new JLabel("");
 		labelProtes.setBounds(26, 36, 123, 100);
 		frameTienda.getContentPane().add(labelProtes);
 		labelProtes.setIcon(new ImageIcon("images\\Proteina.png"));
 
-		JButton anadirProtes = new JButton("Añadir");
+		JButton anadirProtes = new JButton("AÃ±adir");
 		anadirProtes.setBounds(44, 147, 89, 23);
 		frameTienda.getContentPane().add(anadirProtes);
 		anadirProtes.addActionListener(new ActionListener() {
@@ -68,7 +69,7 @@ public class VentanaTienda {
 			public void actionPerformed(ActionEvent e) {
 
 				modelListaCompra
-						.addElement("Proteinas 5kg.                         29,95€");
+						.addElement("Proteinas 5kg.                         29,95â‚¬");
 
 				contadorCesta = (float) (contadorCesta + 29.95);
 
@@ -79,7 +80,7 @@ public class VentanaTienda {
 			}
 		});
 
-		// Icono y Botones Añadir y borrar Item VITAMINAS a la cesta de compra:
+		// Icono y Botones AÃ±adir y borrar Item VITAMINAS a la cesta de compra:
 
 		JLabel labelVitaminas = new JLabel("");
 		labelVitaminas.setBounds(217, 50, 107, 85);
@@ -87,7 +88,7 @@ public class VentanaTienda {
 		labelVitaminas
 				.setIcon(new ImageIcon("images\\Multivitaminas.png"));
 
-		JButton anadirVitaminas = new JButton("Añadir");
+		JButton anadirVitaminas = new JButton("AÃ±adir");
 		anadirVitaminas.setBounds(227, 147, 89, 23);
 		frameTienda.getContentPane().add(anadirVitaminas);
 		anadirVitaminas.addActionListener(new ActionListener() {
@@ -96,7 +97,7 @@ public class VentanaTienda {
 			public void actionPerformed(ActionEvent e) {
 
 				modelListaCompra
-						.addElement("Multivitaminas 100u.                8,95€");
+						.addElement("Multivitaminas 100u.                8,95â‚¬");
 
 				contadorCesta = (float) (contadorCesta + 8.95);
 
@@ -108,6 +109,7 @@ public class VentanaTienda {
 		});
 
 		textTotal = new JTextField();
+		textTotal.setEditable(false);
 		textTotal.setBounds(582, 514, 54, 23);
 		frameTienda.getContentPane().add(textTotal);
 		textTotal.setColumns(10);
@@ -135,7 +137,7 @@ public class VentanaTienda {
 		labelPesas.setBounds(217, 219, 112, 110);
 		frameTienda.getContentPane().add(labelPesas);
 
-		JButton anadirBolsa = new JButton("Añadir");
+		JButton anadirBolsa = new JButton("AÃ±adir");
 		anadirBolsa.setBounds(44, 349, 89, 23);
 		frameTienda.getContentPane().add(anadirBolsa);
 		anadirBolsa.addActionListener(new ActionListener() {
@@ -143,7 +145,7 @@ public class VentanaTienda {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				modelListaCompra
-						.addElement("Mochila                                      21.49€");
+						.addElement("Mochila                                      21.49â‚¬");
 
 				contadorCesta = (float) (contadorCesta + 21.49);
 
@@ -154,7 +156,7 @@ public class VentanaTienda {
 			}
 		});
 
-		JButton anadirPesas = new JButton("Añadir");
+		JButton anadirPesas = new JButton("AÃ±adir");
 		anadirPesas.setBounds(227, 349, 89, 23);
 		frameTienda.getContentPane().add(anadirPesas);
 		anadirPesas.addActionListener(new ActionListener() {
@@ -162,7 +164,7 @@ public class VentanaTienda {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				modelListaCompra
-						.addElement("Mancuernas 5kg 2u.              11.30€");
+						.addElement("Mancuernas 5kg 2u.              11.30â‚¬");
 
 				contadorCesta = (float) (contadorCesta + 11.30);
 
@@ -177,7 +179,7 @@ public class VentanaTienda {
 		labelBarrita.setBounds(26, 434, 123, 117);
 		frameTienda.getContentPane().add(labelBarrita);
 
-		JButton anadirBarrita = new JButton("Añadir");
+		JButton anadirBarrita = new JButton("AÃ±adir");
 		anadirBarrita.setBounds(44, 573, 89, 23);
 		frameTienda.getContentPane().add(anadirBarrita);
 		anadirBarrita.addActionListener(new ActionListener() {
@@ -185,7 +187,7 @@ public class VentanaTienda {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				modelListaCompra
-						.addElement("Barrita Energetica 1u.              3.99€");
+						.addElement("Barrita Energetica 1u.              3.99â‚¬");
 
 				contadorCesta = (float) (contadorCesta + 3.99);
 
@@ -201,7 +203,7 @@ public class VentanaTienda {
 		labelBotellin.setBounds(217, 434, 123, 117);
 		frameTienda.getContentPane().add(labelBotellin);
 
-		JButton anadirBotellin = new JButton("Añadir");
+		JButton anadirBotellin = new JButton("AÃ±adir");
 		anadirBotellin.setBounds(227, 573, 89, 23);
 		frameTienda.getContentPane().add(anadirBotellin);
 		anadirBotellin.addActionListener(new ActionListener() {
@@ -209,7 +211,7 @@ public class VentanaTienda {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				modelListaCompra
-						.addElement("Botellin 1u.                                  1.99€");
+						.addElement("Botellin 1u.                                  1.99â‚¬");
 
 				contadorCesta = (float) (contadorCesta + 1.99);
 
@@ -225,6 +227,7 @@ public class VentanaTienda {
 		frameTienda.getContentPane().add(lblUsuario);
 
 		textUsuario = new JTextField();
+		textUsuario.setEditable(false);
 		textUsuario.setBounds(494, 72, 100, 26);
 		frameTienda.getContentPane().add(textUsuario);
 		textUsuario.setColumns(10);
@@ -243,7 +246,7 @@ public class VentanaTienda {
 						.format(contadorCesta));
 
 				String strCompra = "La compra se ha realizado satisfactoriamente\n "
-						+ "por un total de:\n\n" + contadorCestastr +" €";
+						+ "por un total de:\n\n" + contadorCestastr +" â‚¬";
 				
 				modelListaCompra.clear();
 				textTotal.setText("");
