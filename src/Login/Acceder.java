@@ -115,7 +115,7 @@ public class Acceder {
 					}
 					else JOptionPane.showMessageDialog(btnAceptar, "No tienes permisos de administrador.", "Acceso incorrecto", 2);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+					// 
 					e1.printStackTrace();
 				}
 			}
