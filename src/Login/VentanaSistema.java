@@ -62,6 +62,7 @@ public class VentanaSistema {
 	public VentanaSistema(final Statement consulta2) {
 		
 		frmCentroDeportivoS = new JFrame();
+		frmCentroDeportivoS.setResizable(false);
 		frmCentroDeportivoS.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCentroDeportivoS.setTitle("Centro deportivo 'En forma'");
 		frmCentroDeportivoS.setBounds(100, 100, 618, 425);
@@ -297,34 +298,34 @@ public class VentanaSistema {
 				int dia_semana = calendar.getCalendar().get(Calendar.DAY_OF_WEEK);
 				
 				if(comboBox.getSelectedIndex()==1 && (dia_semana == 1 || dia_semana == 7)){
-					JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
+					JOptionPane.showMessageDialog(btnReservar, "Este dÃ­a no hay reservas.", "Advertencia", 2);
 					return;
 				}
 				if(comboBox.getSelectedIndex()==0){
 					if((String.valueOf(comboBox_3.getSelectedItem()).equals("Lunes")) && dia_semana != 2){
-						JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
+						JOptionPane.showMessageDialog(btnReservar, "Este dÃ­a no hay reservas.", "Advertencia", 2);
 						return;
 					}
 					else if((String.valueOf(comboBox_3.getSelectedItem()).equals("Martes")) && dia_semana != 3){
-						JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
+						JOptionPane.showMessageDialog(btnReservar, "Este dÃ­a no hay reservas.", "Advertencia", 2);
 						return;
 					}
-					else if((String.valueOf(comboBox_3.getSelectedItem()).equals("Miércoles")) && dia_semana != 4){
-						JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
+					else if((String.valueOf(comboBox_3.getSelectedItem()).equals("MiÃ©rcoles")) && dia_semana != 4){
+						JOptionPane.showMessageDialog(btnReservar, "Este dÃ­a no hay reservas.", "Advertencia", 2);
 						return;
 					}
 					else if((String.valueOf(comboBox_3.getSelectedItem()).equals("Jueves")) && dia_semana != 5){
-						JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
+						JOptionPane.showMessageDialog(btnReservar, "Este dÃ­a no hay reservas.", "Advertencia", 2);
 						return;
 					}
 					else if((String.valueOf(comboBox_3.getSelectedItem()).equals("Viernes")) && dia_semana != 6){
-						JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
+						JOptionPane.showMessageDialog(btnReservar, "Este dÃ­a no hay reservas.", "Advertencia", 2);
 						return;
 					}
 				}
 				
 				
-				if(comboBox_2.getSelectedIndex() == -1) JOptionPane.showMessageDialog(btnReservar, "Este dï¿½a no hay reservas.", "Advertencia", 2);
+				if(comboBox_2.getSelectedIndex() == -1) JOptionPane.showMessageDialog(btnReservar, "Este dÃ¯Â¿Â½a no hay reservas.", "Advertencia", 2);
 				else if(comboBox.getSelectedIndex() == 0){
 					try {
 						resultado = consulta2.executeQuery("SELECT fecha, hora, id_usuario FROM actividades"+
@@ -338,7 +339,7 @@ public class VentanaSistema {
 								" WHERE nombre = '"+String.valueOf(comboBox_1.getSelectedItem())+"' AND fecha = '"+dia+"/"+mes+"/"+ano+
 								"' AND id_usuario = '"+id_usuario+"'");
 						if(resultado.next() == true){
-							JOptionPane.showMessageDialog(btnReservar, "Ya hay otra reserva ese dï¿½a.", "Advertencia", 2);
+							JOptionPane.showMessageDialog(btnReservar, "Ya hay otra reserva ese dÃ¯Â¿Â½a.", "Advertencia", 2);
 							return;
 						}
 						resultado = consulta2.executeQuery("SELECT fecha, hora, id_usuario FROM pistas"+
@@ -356,7 +357,7 @@ public class VentanaSistema {
 							cont = resultado.getInt(1);
 						}
 						if(!(cont < 15)){
-							JOptionPane.showMessageDialog(btnReservar, "La reserva estï¿½ completa.", "Advertencia", 2);
+							JOptionPane.showMessageDialog(btnReservar, "La reserva estÃ¯Â¿Â½ completa.", "Advertencia", 2);
 							return;
 						}
 					} catch (SQLException e2) {
@@ -394,7 +395,7 @@ public class VentanaSistema {
 								" WHERE fecha = '"+dia+"/"+mes+"/"+ano+
 								"' AND id_usuario = '"+id_usuario+"'");
 						if(resultado.next() == true){
-							JOptionPane.showMessageDialog(btnReservar, "Ya hay otra reserva ese dï¿½a.", "Advertencia", 2);
+							JOptionPane.showMessageDialog(btnReservar, "Ya hay otra reserva ese dÃ¯Â¿Â½a.", "Advertencia", 2);
 							return;
 						}
 						resultado = consulta2.executeQuery("SELECT fecha, hora FROM pistas"+
@@ -569,7 +570,7 @@ public class VentanaSistema {
 			id_usuario = resultado.getString("id_usuario");
 			textField_1.setText(id_usuario);
 			tipo = resultado.getInt("tipo_cuenta");
-			if(tipo == 0) textField_2.setText("bï¿½sico");
+			if(tipo == 0) textField_2.setText("bÃ¯Â¿Â½sico");
 			else if(tipo == 1) textField_2.setText("premium");
 			else if(tipo == 2) textField_2.setText("administrador");
 			
@@ -606,17 +607,6 @@ public class VentanaSistema {
 			});
 			btnSalir.setBounds(160, 32, 89, 23);
 			panel_1.add(btnSalir);
-			
-			final JButton button = new JButton("?");
-			button.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					String str = "Para crear una reserva: elegir la actividad, el dï¿½a y la hora y pulsar reservar.\n"+
-							"Para eliminar la reserva: seleccionarla y pulsar cancelar reserva.";
-					JOptionPane.showMessageDialog(button, str , "Ayuda", 3);
-				}
-			});
-			button.setBounds(270, 66, 52, 23);
-			panel_1.add(button);
 			
 			JMenuBar menuBar = new JMenuBar();
 			frmCentroDeportivoS.setJMenuBar(menuBar);
@@ -701,26 +691,31 @@ public class VentanaSistema {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					String str1= "Aplicacion ........................asdfasdfadf..asdf";
+					String str1= "Para efectuar la reserva seleccione el tipo de actividad o pista, la fecha y la hora, y pulse Reservar.\n"+
+							"Para eliminar una reserva seleccione la reserva y pulse Cancelar reserva.\n"+
+							"Para ir a la tienda: Tienda En Forma/Ver Tienda.\n"+
+							"Para ver o descargar rutinas de entrenamiento: Entrenamientos recomendados/Lista entrenamientos disponibles.\n"+
+							"Para reservar consulta de fisioterapia: Consulta fisioterapeuta/Reservar consulta.";
 					
-					JOptionPane.showMessageDialog(null, str1, "Ayuda de la AplicaciÃ³n", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, str1, "Ayuda de la AplicaciÃƒÂ³n", 3);
 					
 					
 				}
 			});
 			
 			
-			JMenuItem menuItemAbout = new JMenuItem("About ");
+			JMenuItem menuItemAbout = new JMenuItem("Acerca de EnForma");
 			mnAyuda.add(menuItemAbout);
 			menuItemAbout.addActionListener(new ActionListener() {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					String str2= "AplicaciÃ³n desarrollada para la asignatura Ingenieria del software II\n\n"
-							+ "Alumnos: Raquel \n Ismael \n Cesar \n\n"
-							+ "VersiÃ³n: 2.0 ";
+					String str2= "·César Jesús Rubio Pisabarro.\n"
+							+ "·Raquel Fernández González\n"
+							+ "·Ismael López Nicolás\n"
+							+ "-2015-";
 					
-					JOptionPane.showMessageDialog(null, str2, "About", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, str2, "Acerca de EnForma", JOptionPane.INFORMATION_MESSAGE);
 					
 					
 				}
