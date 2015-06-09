@@ -62,10 +62,12 @@ public class VentanaAdministrador {
 	@SuppressWarnings("unchecked")
 	public VentanaAdministrador(final Statement consulta3) {
 		frmAdministracion = new JFrame();
+		frmAdministracion.setResizable(false);
 		frmAdministracion.setTitle("Administracion");
 		frmAdministracion.setBounds(100, 100, 545, 421);
 		frmAdministracion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAdministracion.getContentPane().setLayout(null);
+		frmAdministracion.setLocationRelativeTo(null);
 		
 		try {
 			resultadoUsuarios = consulta3.executeQuery("SELECT nombre, id_usuario, tipo_cuenta FROM usuarios WHERE nombre = '" + Acceder.getNombre() + "' AND clave = '" + Acceder.getClave() + "'");
@@ -179,10 +181,9 @@ public class VentanaAdministrador {
 			btnAyuda.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					String str = "Para crear nuevo usuario: introducir nombre y clave y pulsar crear usuario.\n"+
-							"Para mostrar usuarios, actividades o pistas seleccionar el desplegable.\n"+
-							"Para eliminar el registro de la base de datos pulsar eliminar selección.\n"+
+							"Para eliminar el registro de la base de datos seleccionar este y pulsar eliminar selección.\n"+
 							"Para cambiar los permisos de un usuario, seleccionar el usuario, seleccionar el tipo de permiso\n"+
-							"y pulsar dar permiso.\n"+
+							"y pulsar Dar permiso.\n"+
 							"Para crear una copia de la base de datos pulsar crear una copia de la BD.";
 					JOptionPane.showMessageDialog(btnAyuda,str , "Ayuda", 3);
 				}
@@ -441,6 +442,14 @@ public class VentanaAdministrador {
 			infoUsuarioPanel.add(button_1);
 			
 			JButton button_2 = new JButton("?");
+			button_2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					String str = "Para añadir nueva sesión: introducir nombre, día y hora y pulsar Añadir.\n"+
+							"Para eliminar el registro de la base de datos seleccionar este y pulsar eliminar selección.\n";
+					JOptionPane.showMessageDialog(btnAyuda,str , "Ayuda", 3);
+					
+				}
+			});
 			button_2.setBounds(7, 59, 46, 23);
 			infoUsuarioPanel.add(button_2);
 			
@@ -541,6 +550,13 @@ public class VentanaAdministrador {
 			infoUsuarioPanel_1.add(button_3);
 			
 			JButton button_4 = new JButton("?");
+			button_4.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String str = "Para añadir nuevo tipo de pista: introducir nombre y pulsar Añadir.\n"+
+							"Para eliminar el registro de la base de datos seleccionar este y pulsar eliminar selección.\n";
+					JOptionPane.showMessageDialog(btnAyuda,str , "Ayuda", 3);
+				}
+			});
 			button_4.setBounds(7, 59, 46, 23);
 			infoUsuarioPanel_1.add(button_4);
 			
@@ -760,13 +776,24 @@ public class VentanaAdministrador {
 			actividadesPanel.add(comboBox);
 			
 			final JComboBox comboBox_1 = new JComboBox();
-			comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"10:00", "11:00", "12:00", "16:00", "17:00", "18:00"}));
+			comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"9:00", "10:00", "11:00", "12:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"}));
 			comboBox_1.setBounds(199, 287, 80, 20);
 			actividadesPanel.add(comboBox_1);
 			
-			JButton btnAadir_1 = new JButton("A\u00F1adir");
+			final JButton btnAadir_1 = new JButton("A\u00F1adir");
 			btnAadir_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					try {
+						resultadoActividades2 = consulta3.executeQuery("SELECT nombre, dia, hora FROM actividades_sesiones"+
+								" WHERE nombre = '"+textField_11.getText()+
+								"' AND dia = '"+comboBox.getSelectedItem().toString()+"' AND hora = '"+comboBox_1.getSelectedItem().toString()+"'");
+						if(resultadoActividades2.next() == true){
+							JOptionPane.showMessageDialog(btnAadir_1, "Ya hay otra sesion a esa hora.", "Advertencia", 2);
+							return;
+						}
+					}catch (SQLException e1){
+						e1.printStackTrace();
+					}
 					int cont = 1;
 					try {
 						resultadoActividades2 = consulta3.executeQuery("SELECT id_sesion FROM actividades_sesiones WHERE id_sesion = '" + cont + "'");
