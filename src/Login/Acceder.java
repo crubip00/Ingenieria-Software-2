@@ -40,6 +40,7 @@ public class Acceder {
 	public Acceder(final Conexion conexion) {
 		
 		frmLogin = new JFrame();
+		frmLogin.setResizable(false);
 		frmLogin.setTitle("Login");
 		frmLogin.setBounds(100, 100, 457, 163);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
