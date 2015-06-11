@@ -4,6 +4,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -121,6 +126,58 @@ public class Acceder {
 			}
 		});
 		panel_1.add(btnAdministrar);
+		
+		JButton botonImportarBD2 = new JButton("Importar BD");
+		panel_1.add(botonImportarBD2);
+		botonImportarBD2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+
+				String script_location = "";
+				final String file_extension = ".sql";
+				ProcessBuilder processBuilder = null;
+
+				try {
+					File file = new File("sql");
+					File[] list_files = file.listFiles(new FileFilter() {
+
+						public boolean accept(File f) {
+							if (f.getName().toLowerCase()
+									.endsWith(file_extension))
+								return true;
+							return false;
+						}
+					});
+					for (int i = 0; i < list_files.length; i++) {
+						script_location = "@"
+								+ list_files[i].getAbsolutePath();
+						processBuilder = new ProcessBuilder("sqlplus",
+								"SYSTEM/galleta@localhost", script_location);
+
+						processBuilder.redirectErrorStream(true);
+						Process process = processBuilder.start();
+						BufferedReader in = new BufferedReader(
+								new InputStreamReader(process
+										.getInputStream()));
+						String currentLine = null;
+						while ((currentLine = in.readLine()) != null) {
+							System.out.println(" " + currentLine);
+						}
+
+					}
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+
+			}
+			
+		});
+		
 		
 		JPanel panel_2 = new JPanel();
 		frmLogin.getContentPane().add(panel_2, BorderLayout.CENTER);

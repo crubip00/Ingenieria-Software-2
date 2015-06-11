@@ -53,25 +53,25 @@ public class VentanaEntrenamientos {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				String strWeider = " DÃ­a 1: Espalda â€“ TrÃ­ceps:\n"
-						+ "Dominadascon las manos hacia atrÃ¡s: 3 X 6\n"
-						+ "JalÃ³n frontal: 3 X 12\n"
+				String strWeider = " Día 1: Espalda - Tríceps:\n"
+						+ "Dominadas con las manos hacia atrás: 3 X 6\n"
+						+ "Jalón frontal: 3 X 12\n"
 						+ "Remo Gironda: 3 X 12\n"
-						+ "Press francÃ©s: 4 X 10\n"
+						+ "Press francés: 4 X 10\n"
 						+ "Extensiones con polea: 3 X 10\n\n\n"
 						+
 
-						"DÃ­a 2: Pectoral â€“ BÃ­ceps:\n"
+						"Día 2: Pectoral - Bíceps:\n"
 						+ "Press de banca con barra: 4 X 7\n"
 						+ "Aperturas con mancuernas: 3 X 12\n"
-						+ "MÃ¡quina contractora de pectoral: 3 X 12\n"
-						+ "Curl de bÃ­ceps martillo con mancuernas: 4 X 10\n"
-						+ "Curl de bÃ­ceps con barra Z en banco Scott: 4 X 10\n\n\n"
+						+ "Máquina contractora de pectoral: 3 X 12\n"
+						+ "Curl de bíceps martillo con mancuernas: 4 X 10\n"
+						+ "Curl de bíceps con barra Z en banco Scott: 4 X 10\n\n\n"
 						+
 
-						"DÃ­a 3: Piernas â€“ Hombros:\n" + "Peso muerto: 3 X 8\n"
+						"Día 3: Piernas - Hombros:\n" + "Peso muerto: 3 X 8\n"
 						+ "Contractora de femoral: 4 X 10\n"
-						+ "Contractora de cuÃ¡driceps: 4 X 10\n"
+						+ "Contractora de cuádriceps: 4 X 10\n"
 						+ "Press de hombro con mancuernas, sentado: 4 X 6\n"
 						+ "Elevaciones laterales: 3 X 10\n"
 						+ "Elevaciones frontales: 3 X 10\n ";
@@ -142,22 +142,22 @@ public class VentanaEntrenamientos {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				String strFullBody = " DÃ­a 1:\n" +
+				String strFullBody = " Día 1:\n" +
 
 				"Sentadilla 2 x 15 reps.\n" + "Gemelos 1 x 15 reps.\n"
-						+ "JalÃ³n al Pecho 2 x 10 reps.\n"
+						+ "Jalón al Pecho 2 x 10 reps.\n"
 						+ "Press Banca 2 x 10 reps.\n"
 						+ "Press Militar 1 x 8 reps.\n"
 						+ "Extensiones Antebrazos 1 x 20 reps.\n"
 						+ "Abdominales 1 x Max.\n\n\n" +
 
-						"DÃ­a 2:\n" +
+						"Día 2:\n" +
 
 						"Peso Muerto  2 x 15 reps.\n"
 						+ "Curl Femoral 1 x 15 reps.\n"
 						+ "Remo Sentado 2 x 10 reps.\n"
 						+ "Press Superior 2 x 10 reps.\n"
-						+ "PÃ¡jaros 45Âº 1 x 8 reps.\n"
+						+ "Pájaros 45º 1 x 8 reps.\n"
 						+ "Curl Antebrazos 1 x 20 reps.\n"
 						+ "Abdominales 1 x Max.\n";
 
@@ -230,28 +230,28 @@ public class VentanaEntrenamientos {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				String strCrossFit = "DÃ­a 1:\n" + "5Ã—5 Sentadilla con barra\n"
+				String strCrossFit = "Día 1:\n" + "5x5 Sentadilla con barra\n"
 						+ "15 Sentadillas con peso corporal\n"
 						+ "10 Flexiones\n" + "5 Dominadas con kipping\n\n\n" +
 
-						"DÃ­a 2:\n" +
+						"Día 2:\n" +
 
-						"5Ã—5 Press militar con barra\n"
+						"5x5 Press militar con barra\n"
 						+ "500 metros de remo\n" + "21 Burpees\n"
 						+ "400 metros de remo\n" + "19 Burpees\n"
 						+ "300 metros de remo\n" + "17 Burpees\n"
 						+ "200 metros de remo\n" + "15 Burpees\n"
 						+ "100 metros de remo\n" + "13 Burpees\n\n\n" +
 
-						"DÃ­a 3:\n" +
+						"Día 3:\n" +
 
-						"8Ã—3 Peso muerto (Al 75% de nuestra 1RM)\n"
+						"8x3 Peso muerto (Al 75% de nuestra 1RM)\n"
 						+ "10 Dominadas con kipping\n"
 						+ "10 Sentadillas frontales con 30/20 kg\n\n\n" +
 
-						"DÃ­a 4:\n" +
+						"Día 4:\n" +
 
-						"5Ã—5 Press de banca con barra\n"
+						"5x5 Press de banca con barra\n"
 						+ "20 Abdominales de crossfit\n" + "10 Flexiones\n"
 						+ "10 Arrancadas con mancuerna 17,5/12,5 kg\n";
 
@@ -352,11 +352,11 @@ public class VentanaEntrenamientos {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				String strGAP = "GAP: ejercicio 1. Piernas y glÃºteos\n" +
+				String strGAP = "GAP: ejercicio 1. Piernas y glúteos\n" +
 
-				"GAP: ejercicio 2. Muslos y glÃºteos 1\n" +
+				"GAP: ejercicio 2. Muslos y glúteos 1\n" +
 
-				"GAP: ejercicio 3. Muslos y glÃºteos 2\n" +
+				"GAP: ejercicio 3. Muslos y glúteos 2\n" +
 
 				"GAP: ejercicio 4. Gemelos\n" +
 
@@ -396,13 +396,13 @@ public class VentanaEntrenamientos {
 			public void actionPerformed(ActionEvent e) {
 
 				String strGAP = "Track 1: Calentamiento.\n"
-						+ "Track 2: Piernas y glÃºteos.\n"
+						+ "Track 2: Piernas y glúteos.\n"
 						+ "Track 3: Trabajo pectoral.\n"
 						+ "Track 4: Espalda y gluteos. (Sentadillas).\n"
-						+ "Track 5: TrÃ­ceps.\n" + "Track 6: BÃ­ceps.\n"
+						+ "Track 5: Tríceps.\n" + "Track 6: Bíceps.\n"
 						+ "Track 7: Piernas (Genuflexiones).\n"
 						+ "Track  8: Hombros.\n" + "Track 9: Abdominales.\n"
-						+ "Track 10: RelajaciÃ³n y estiramientos.\n";
+						+ "Track 10: Relajación y estiramientos.\n";
 
 				JOptionPane.showMessageDialog(null, strGAP,
 						"Vista Previa Body Pump",
@@ -476,28 +476,28 @@ public class VentanaEntrenamientos {
 						+
 
 						"Estructura: ABAxBABx..\n"
-						+ "Descanso entre (sÃºper)series: Cada 2x, 60s / +Myo-reps 5s\n\n\n"
+						+ "Descanso entre (súper)series: Cada 2x, 60s / +Myo-reps 5s\n\n\n"
 						+
 
-						"<< DÃ�A A >>\n"
+						"<< Día A >>\n"
 						+ "1. SS.A1 Sentadillas  4x10\n"
 						+ "2. SS.A2 Dominadas  4x10\n"
 						+ "3. SS.B1 Elevaciones de talones  4x30\n"
-						+ "4. SS.B2 JalÃ³n al pecho  4x12+3+3+3\n"
+						+ "4. SS.B2 Jalón al pecho  4x12+3+3+3\n"
 						+ "5. SS.C1 Extensiones de cuadriceps  4x12+3+3+3\n"
 						+ "6. SS.C2 Scap trap semi-inclinado  4x12+3+3+3\n"
 						+ "7. SS.D1 Curl femoral  4x12+3+3+3\n"
 						+ "8. SS.D2 Curl predicador  4x12+3+3+3\n\n\n"
 						+
 
-						"<< DÃ�A B >>\n"
+						"<< Día B >>\n"
 						+ "1. SS.E1 Press banca semi-inclinado  4x10+2+2+2\n"
 						+ "2. SS.E2 Elevaciones posteriores  4x12+3+3+3\n"
 						+ "3. SS.F1 Press banca inclinado  4x10+2+2+2\n"
 						+ "4. SS.F2 Elevaciones laterales  4x12+3+3+3\n"
 						+ "5. SS.G1 Press militar  4x10\n"
 						+ "6. SS.G2 Aperturas inclinado  4x12+3+3+3\n"
-						+ "7. SS.H1 Extensiones de trÃ­ceps con polea  4x12+3+3+3\n"
+						+ "7. SS.H1 Extensiones de tríceps con polea  4x12+3+3+3\n"
 						+ "8. SS.H2 Ab wheel  4x12+3+3+3\n";
 
 				JOptionPane.showMessageDialog(null, strGAP,

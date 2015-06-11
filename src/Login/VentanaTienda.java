@@ -60,7 +60,7 @@ public class VentanaTienda {
 		frameTienda.getContentPane().add(labelProtes);
 		labelProtes.setIcon(new ImageIcon("images\\Proteina.png"));
 
-		JButton anadirProtes = new JButton("AÃ±adir");
+		JButton anadirProtes = new JButton("Añadir");
 		anadirProtes.setBounds(44, 147, 89, 23);
 		frameTienda.getContentPane().add(anadirProtes);
 		anadirProtes.addActionListener(new ActionListener() {
@@ -69,7 +69,7 @@ public class VentanaTienda {
 			public void actionPerformed(ActionEvent e) {
 
 				modelListaCompra
-						.addElement("Proteinas 5kg.                         29,95â‚¬");
+						.addElement("Proteinas 5kg.                         29,95€");
 
 				contadorCesta = (float) (contadorCesta + 29.95);
 
@@ -88,7 +88,7 @@ public class VentanaTienda {
 		labelVitaminas
 				.setIcon(new ImageIcon("images\\Multivitaminas.png"));
 
-		JButton anadirVitaminas = new JButton("AÃ±adir");
+		JButton anadirVitaminas = new JButton("Añadir");
 		anadirVitaminas.setBounds(227, 147, 89, 23);
 		frameTienda.getContentPane().add(anadirVitaminas);
 		anadirVitaminas.addActionListener(new ActionListener() {
@@ -97,7 +97,7 @@ public class VentanaTienda {
 			public void actionPerformed(ActionEvent e) {
 
 				modelListaCompra
-						.addElement("Multivitaminas 100u.                8,95â‚¬");
+						.addElement("Multivitaminas 100u.                8,95€");
 
 				contadorCesta = (float) (contadorCesta + 8.95);
 
@@ -137,7 +137,7 @@ public class VentanaTienda {
 		labelPesas.setBounds(217, 219, 112, 110);
 		frameTienda.getContentPane().add(labelPesas);
 
-		JButton anadirBolsa = new JButton("AÃ±adir");
+		JButton anadirBolsa = new JButton("Añadir");
 		anadirBolsa.setBounds(44, 349, 89, 23);
 		frameTienda.getContentPane().add(anadirBolsa);
 		anadirBolsa.addActionListener(new ActionListener() {
@@ -145,7 +145,7 @@ public class VentanaTienda {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				modelListaCompra
-						.addElement("Mochila                                      21.49â‚¬");
+						.addElement("Mochila                                      21.49€");
 
 				contadorCesta = (float) (contadorCesta + 21.49);
 
@@ -156,7 +156,7 @@ public class VentanaTienda {
 			}
 		});
 
-		JButton anadirPesas = new JButton("AÃ±adir");
+		JButton anadirPesas = new JButton("Añadir");
 		anadirPesas.setBounds(227, 349, 89, 23);
 		frameTienda.getContentPane().add(anadirPesas);
 		anadirPesas.addActionListener(new ActionListener() {
@@ -164,7 +164,7 @@ public class VentanaTienda {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				modelListaCompra
-						.addElement("Mancuernas 5kg 2u.              11.30â‚¬");
+						.addElement("Mancuernas 5kg 2u.              11.30€");
 
 				contadorCesta = (float) (contadorCesta + 11.30);
 
@@ -179,7 +179,7 @@ public class VentanaTienda {
 		labelBarrita.setBounds(26, 434, 123, 117);
 		frameTienda.getContentPane().add(labelBarrita);
 
-		JButton anadirBarrita = new JButton("AÃ±adir");
+		JButton anadirBarrita = new JButton("Añadir");
 		anadirBarrita.setBounds(44, 573, 89, 23);
 		frameTienda.getContentPane().add(anadirBarrita);
 		anadirBarrita.addActionListener(new ActionListener() {
@@ -187,7 +187,7 @@ public class VentanaTienda {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				modelListaCompra
-						.addElement("Barrita Energetica 1u.              3.99â‚¬");
+						.addElement("Barrita Energetica 1u.              3.99€");
 
 				contadorCesta = (float) (contadorCesta + 3.99);
 
@@ -203,7 +203,7 @@ public class VentanaTienda {
 		labelBotellin.setBounds(217, 434, 123, 117);
 		frameTienda.getContentPane().add(labelBotellin);
 
-		JButton anadirBotellin = new JButton("AÃ±adir");
+		JButton anadirBotellin = new JButton("Añadir");
 		anadirBotellin.setBounds(227, 573, 89, 23);
 		frameTienda.getContentPane().add(anadirBotellin);
 		anadirBotellin.addActionListener(new ActionListener() {
@@ -211,7 +211,7 @@ public class VentanaTienda {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				modelListaCompra
-						.addElement("Botellin 1u.                                  1.99â‚¬");
+						.addElement("Botellin 1u.                                  1.99€");
 
 				contadorCesta = (float) (contadorCesta + 1.99);
 
@@ -246,7 +246,7 @@ public class VentanaTienda {
 						.format(contadorCesta));
 
 				String strCompra = "La compra se ha realizado satisfactoriamente\n "
-						+ "por un total de:\n\n" + contadorCestastr +" â‚¬";
+						+ "por un total de:\n\n" + contadorCestastr +" €";
 				
 				modelListaCompra.clear();
 				textTotal.setText("");

@@ -186,7 +186,7 @@ public class VentanaAdministrador {
 			textField_4.setColumns(10);
 			infoUsuarioPanel_2.add(textField_4);
 
-			JLabel label_1 = new JLabel("N\u00BA socio:");
+			JLabel label_1 = new JLabel("Nº socio:");
 			label_1.setBounds(37, 33, 57, 14);
 			infoUsuarioPanel_2.add(label_1);
 
@@ -240,7 +240,7 @@ public class VentanaAdministrador {
 			BBDDPanelUsuarios.add(lblBaseDeDatos);
 			lblBaseDeDatos.setFont(new Font("Tahoma", Font.BOLD, 11));
 
-			JButton btnEliminarUsuario = new JButton("Eliminar selecci\u00F3n");
+			JButton btnEliminarUsuario = new JButton("Eliminar selección");
 			btnEliminarUsuario.setBounds(5, 205, 139, 23);
 			BBDDPanelUsuarios.add(btnEliminarUsuario);
 			btnEliminarUsuario.addActionListener(new ActionListener() {
@@ -332,7 +332,7 @@ public class VentanaAdministrador {
 				}
 			});
 
-			JButton btnNewButton_2 = new JButton("BackUp de la BD");
+			JButton btnNewButton_2 = new JButton("BackUp");
 			btnNewButton_2.setBounds(146, 205, 118, 23);
 			BBDDPanelUsuarios.add(btnNewButton_2);
 			btnNewButton_2.addActionListener(new ActionListener() {
@@ -466,7 +466,7 @@ public class VentanaAdministrador {
 			BBDDPanelActividades.add(lblBaseDeDatos_4);
 
 			JButton btnEliminarActividad = new JButton(
-					"Eliminar selecci\u00F3n");
+					"Eliminar selección");
 			btnEliminarActividad.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					String s = String.valueOf(listActividades
@@ -512,10 +512,6 @@ public class VentanaAdministrador {
 			});
 			btnEliminarActividad.setBounds(5, 205, 139, 23);
 			BBDDPanelActividades.add(btnEliminarActividad);
-
-			JButton button_6 = new JButton("Copia de la BD");
-			button_6.setBounds(146, 205, 118, 23);
-			BBDDPanelActividades.add(button_6);
 
 			JPanel pistasPanel = new JPanel();
 			tabbedPane.addTab("Pistas", null, pistasPanel, null);
@@ -591,7 +587,7 @@ public class VentanaAdministrador {
 			lblBaseDeDatos_1.setBounds(5, 11, 177, 14);
 			BBDDPanelPistas.add(lblBaseDeDatos_1);
 
-			JButton btnEliminarPistas = new JButton("Eliminar selecci\u00F3n");
+			JButton btnEliminarPistas = new JButton("Eliminar selección");
 			btnEliminarPistas.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String s = String.valueOf(listPistas.getSelectedValue());
@@ -636,10 +632,6 @@ public class VentanaAdministrador {
 			});
 			btnEliminarPistas.setBounds(5, 205, 139, 23);
 			BBDDPanelPistas.add(btnEliminarPistas);
-
-			JButton button_8 = new JButton("Copia de la BD");
-			button_8.setBounds(146, 205, 118, 23);
-			BBDDPanelPistas.add(button_8);
 
 			JPanel panel = new JPanel();
 			panel.setBounds(287, 109, 227, 235);
@@ -697,6 +689,8 @@ public class VentanaAdministrador {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					
+					
 
 					String script_location = "";
 					final String file_extension = ".sql";
@@ -737,6 +731,7 @@ public class VentanaAdministrador {
 					}
 
 				}
+				
 			});
 
 			JPanel crearUsuarioPanel = new JPanel();
@@ -888,7 +883,7 @@ public class VentanaAdministrador {
 			scrollPane_4.setViewportView(listActividades2);
 
 			JButton btnEliminarActividad2 = new JButton(
-					"Eliminar selecci\u00F3n");
+					"Eliminar selección");
 			btnEliminarActividad2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					String s = String.valueOf(listActividades2
@@ -961,7 +956,7 @@ public class VentanaAdministrador {
 			btnEliminarActividad2.setBounds(10, 201, 207, 23);
 			sesionesPanel.add(btnEliminarActividad2);
 
-			JLabel lblDa = new JLabel("D\u00EDa:");
+			JLabel lblDa = new JLabel("Día:");
 			lblDa.setBounds(10, 290, 35, 14);
 			actividadesPanel.add(lblDa);
 
@@ -969,7 +964,7 @@ public class VentanaAdministrador {
 			lblHora.setBounds(160, 290, 35, 14);
 			actividadesPanel.add(lblHora);
 
-			JLabel lblNombre_1 = new JLabel("Nombre nueva sesi\u00F3n:");
+			JLabel lblNombre_1 = new JLabel("Nombre nueva sesión:");
 			lblNombre_1.setBounds(10, 260, 130, 14);
 			actividadesPanel.add(lblNombre_1);
 
@@ -991,7 +986,7 @@ public class VentanaAdministrador {
 			comboBox_1.setBounds(199, 287, 80, 20);
 			actividadesPanel.add(comboBox_1);
 
-			final JButton btnAadir_1 = new JButton("A\u00F1adir");
+			final JButton btnAadir_1 = new JButton("Añadir");
 			btnAadir_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					try {
@@ -1109,7 +1104,7 @@ public class VentanaAdministrador {
 			lblBaseDeDatos_2.setBounds(10, 11, 160, 14);
 			panel.add(lblBaseDeDatos_2);
 
-			JButton btnEliminarPistas2 = new JButton("Eliminar selecci\u00F3n");
+			JButton btnEliminarPistas2 = new JButton("Eliminar selección");
 			btnEliminarPistas2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					String s = String.valueOf(listPistas2.getSelectedValue());
@@ -1188,7 +1183,7 @@ public class VentanaAdministrador {
 			lblNombre_2.setBounds(10, 260, 159, 14);
 			pistasPanel.add(lblNombre_2);
 
-			JButton btnAadir = new JButton("A\u00F1adir");
+			JButton btnAadir = new JButton("Añadir");
 			btnAadir.setBounds(10, 306, 159, 23);
 			pistasPanel.add(btnAadir);
 			btnAadir.addActionListener(new ActionListener() {

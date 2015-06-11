@@ -225,7 +225,7 @@ public class VentanaFisio {
 			}
 		});
 
-		JLabel lblDescripcion = new JLabel("DescripciÃ³n: ");
+		JLabel lblDescripcion = new JLabel("Descripción: ");
 		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblDescripcion.setBounds(126, 310, 78, 14);
 		frameFisio.getContentPane().add(lblDescripcion);
@@ -256,7 +256,9 @@ public class VentanaFisio {
 
 				JOptionPane.showMessageDialog(null,
 						"La reserva se ha eliminado correctamente!");
-
+				
+				 textDescripcion.setText("");
+				
 				// Actualizar la lista de reservas dinamicamente!
 
 				try {

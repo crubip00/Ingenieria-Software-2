@@ -36,13 +36,9 @@ public class VentanaSistema {
 
 	JFrame frmCentroDeportivoS;
 	
-	//private String [] pistas = {"padel", "tenis", "squash", "polideportivo"};
+	
 	private String [] tipos = {"Actividades", "Pistas"};
-	private String [] horasPistas = {"10:00", "11:00", "12:00", "13:00", "16:00", "17:00", "18:00", "19:00", "20:00"};
-	//private String [] horasBatuka = {"10:00", "16:00"};
-	//private String [] horasMantenimiento = {"11:00", "17:00"};
-	//private String [] horasPilates = {"12:00", "18:00"};
-	//private String [] horasMeditacion = {"20:00"};
+	private String [] horasPistas = {"10:00", "11:00", "12:00", "13:00", "16:00", "17:00", "18:00", "19:00", "20:00"};	
 	private JTextField textField;
 	private JTextField textField_1;
 	private ResultSet resultado;
@@ -277,6 +273,7 @@ public class VentanaSistema {
 		});
 		
 		JPanel panel_1 = new JPanel();
+		
 		panel_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panel_1.setBounds(264, 11, 327, 345);
 		frmCentroDeportivoS.getContentPane().add(panel_1);
@@ -298,34 +295,34 @@ public class VentanaSistema {
 				int dia_semana = calendar.getCalendar().get(Calendar.DAY_OF_WEEK);
 				
 				if(comboBox.getSelectedIndex()==1 && (dia_semana == 1 || dia_semana == 7)){
-					JOptionPane.showMessageDialog(btnReservar, "Este dÃ­a no hay reservas.", "Advertencia", 2);
+					JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
 					return;
 				}
 				if(comboBox.getSelectedIndex()==0){
 					if((String.valueOf(comboBox_3.getSelectedItem()).equals("Lunes")) && dia_semana != 2){
-						JOptionPane.showMessageDialog(btnReservar, "Este dÃ­a no hay reservas.", "Advertencia", 2);
+						JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
 						return;
 					}
 					else if((String.valueOf(comboBox_3.getSelectedItem()).equals("Martes")) && dia_semana != 3){
-						JOptionPane.showMessageDialog(btnReservar, "Este dÃ­a no hay reservas.", "Advertencia", 2);
+						JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
 						return;
 					}
 					else if((String.valueOf(comboBox_3.getSelectedItem()).equals("MiÃ©rcoles")) && dia_semana != 4){
-						JOptionPane.showMessageDialog(btnReservar, "Este dÃ­a no hay reservas.", "Advertencia", 2);
+						JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
 						return;
 					}
 					else if((String.valueOf(comboBox_3.getSelectedItem()).equals("Jueves")) && dia_semana != 5){
-						JOptionPane.showMessageDialog(btnReservar, "Este dÃ­a no hay reservas.", "Advertencia", 2);
+						JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
 						return;
 					}
 					else if((String.valueOf(comboBox_3.getSelectedItem()).equals("Viernes")) && dia_semana != 6){
-						JOptionPane.showMessageDialog(btnReservar, "Este dÃ­a no hay reservas.", "Advertencia", 2);
+						JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
 						return;
 					}
 				}
 				
 				
-				if(comboBox_2.getSelectedIndex() == -1) JOptionPane.showMessageDialog(btnReservar, "Este dÃ¯Â¿Â½a no hay reservas.", "Advertencia", 2);
+				if(comboBox_2.getSelectedIndex() == -1) JOptionPane.showMessageDialog(btnReservar, "Este día no hay reservas.", "Advertencia", 2);
 				else if(comboBox.getSelectedIndex() == 0){
 					try {
 						resultado = consulta2.executeQuery("SELECT fecha, hora, id_usuario FROM actividades"+
@@ -339,7 +336,7 @@ public class VentanaSistema {
 								" WHERE nombre = '"+String.valueOf(comboBox_1.getSelectedItem())+"' AND fecha = '"+dia+"/"+mes+"/"+ano+
 								"' AND id_usuario = '"+id_usuario+"'");
 						if(resultado.next() == true){
-							JOptionPane.showMessageDialog(btnReservar, "Ya hay otra reserva ese dÃ¯Â¿Â½a.", "Advertencia", 2);
+							JOptionPane.showMessageDialog(btnReservar, "Ya hay otra reserva ese día.", "Advertencia", 2);
 							return;
 						}
 						resultado = consulta2.executeQuery("SELECT fecha, hora, id_usuario FROM pistas"+
@@ -357,7 +354,7 @@ public class VentanaSistema {
 							cont = resultado.getInt(1);
 						}
 						if(!(cont < 15)){
-							JOptionPane.showMessageDialog(btnReservar, "La reserva estÃ¯Â¿Â½ completa.", "Advertencia", 2);
+							JOptionPane.showMessageDialog(btnReservar, "La reserva está completa.", "Advertencia", 2);
 							return;
 						}
 					} catch (SQLException e2) {
@@ -395,7 +392,7 @@ public class VentanaSistema {
 								" WHERE fecha = '"+dia+"/"+mes+"/"+ano+
 								"' AND id_usuario = '"+id_usuario+"'");
 						if(resultado.next() == true){
-							JOptionPane.showMessageDialog(btnReservar, "Ya hay otra reserva ese dÃ¯Â¿Â½a.", "Advertencia", 2);
+							JOptionPane.showMessageDialog(btnReservar, "Ya hay otra reserva ese día.", "Advertencia", 2);
 							return;
 						}
 						resultado = consulta2.executeQuery("SELECT fecha, hora FROM pistas"+
@@ -570,7 +567,7 @@ public class VentanaSistema {
 			id_usuario = resultado.getString("id_usuario");
 			textField_1.setText(id_usuario);
 			tipo = resultado.getInt("tipo_cuenta");
-			if(tipo == 0) textField_2.setText("bÃ¯Â¿Â½sico");
+			if(tipo == 0) textField_2.setText("básico");
 			else if(tipo == 1) textField_2.setText("premium");
 			else if(tipo == 2) textField_2.setText("administrador");
 			
@@ -697,7 +694,7 @@ public class VentanaSistema {
 							"Para ver o descargar rutinas de entrenamiento: Entrenamientos recomendados/Lista entrenamientos disponibles.\n"+
 							"Para reservar consulta de fisioterapia: Consulta fisioterapeuta/Reservar consulta.";
 					
-					JOptionPane.showMessageDialog(null, str1, "Ayuda de la AplicaciÃƒÂ³n", 3);
+					JOptionPane.showMessageDialog(null, str1, "Ayuda de la Aplicación", 3);
 					
 					
 				}
@@ -711,8 +708,8 @@ public class VentanaSistema {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					String str2= "·César Jesús Rubio Pisabarro.\n"
-							+ "·Raquel Fernández González\n"
-							+ "·Ismael López Nicolás\n"
+							+ "·Raquel Fernández González.\n"
+							+ "·Ismael López Nicolás.\n"
 							+ "-2015-";
 					
 					JOptionPane.showMessageDialog(null, str2, "Acerca de EnForma", JOptionPane.INFORMATION_MESSAGE);
